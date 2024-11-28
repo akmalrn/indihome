@@ -19,7 +19,7 @@ Route::get('/welcome', [AuthController::class, 'index'])->name('welcome');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::middleware(['auth'])->group(function(){
+Route::middleware(['auth'])->group(function () {
     Route::get('/admin-dashboard', [App\Http\Controllers\admin\AdminController::class, 'index'])->name('admin.dashboard');
 
     //configuration
@@ -33,6 +33,10 @@ Route::middleware(['auth'])->group(function(){
     //why us
     Route::get('/admin-dashboard/why-us', [App\Http\Controllers\admin\WhyUsController::class, 'index'])->name('why-us.index');
     Route::post('/admin-dashboard/why-us', [App\Http\Controllers\admin\WhyUsController::class, 'storeOrUpdate'])->name('why-us.store');
+
+    //Contact
+    Route::get('/admin-dashboard/contacts', [App\Http\Controllers\admin\ContactController::class, 'index'])->name('contacts.index');
+    Route::post('/admin-dashboard/contacts', [App\Http\Controllers\admin\ContactController::class, 'storeOrUpdate'])->name('contacts.store');
 
     //slider
     Route::resource('/admin-dashboard/slider', App\Http\Controllers\admin\SliderController::class);
@@ -66,6 +70,9 @@ Route::middleware(['auth'])->group(function(){
 
     //testimonial
     Route::resource('/admin-dashboard/testimonial-clients', App\Http\Controllers\admin\TestimonialClientController::class);
+
+    //team
+    Route::resource('/admin-dashboard/our-team', App\Http\Controllers\admin\OurTeamController::class);
 });
 
 Route::get('/', function () {
@@ -76,10 +83,10 @@ Route::controller(App\Http\Controllers\FrontendController::class)->group(functio
     Route::get('/', 'index')->name('index');
     Route::get('/about', 'about')->name('about');
     Route::get('/price', 'price')->name('price');
-    Route::get('/movie', 'movie')->name('movie');
     Route::get('/services', 'services')->name('services');
-    Route::get('/services/{type_id}', 'DetailService')->name('detail_service');
+    Route::get('/service/{id}', 'DetailService')->name('detail_service');
     Route::get('/blog', 'blog')->name('blog');
-    Route::get('/blog/{id}', 'detailblog')->name('blog_detail');
+    Route::get('/blog/{id}', 'detailblog')->name('blog-detail');
     Route::get('/contact', 'contact')->name('contact');
+    Route::get('/blogs/search', 'search')->name('blogs.search');
 });

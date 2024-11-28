@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\admin\Blog;
 use App\Models\Visit;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -11,7 +12,6 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
 
         $visits = Visit::selectRaw('DATE(visited_at) as date, COUNT(*) as count')
             ->groupBy('date')
@@ -29,8 +29,9 @@ class AdminController extends Controller
         if ($yesterdayVisit > 0) {
             $percentageChange = (($todayVisit - $yesterdayVisit) / $yesterdayVisit) * 100;
         }
+        $totalBlog = Blog::count();
 
-        return view('backend.index', compact('user', 'visits', 'todayVisit', 'percentageChange', 'onlineVisitorsCount', 'totalVisits'));
+        return view('backend.index', compact('totalBlog', 'visits', 'todayVisit', 'percentageChange', 'onlineVisitorsCount', 'totalVisits'));
     }
 
 }

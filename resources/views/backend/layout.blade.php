@@ -168,7 +168,7 @@
                                 <span class="badge badge-secondary"></span>
                             </a>
                         </li>
-                        <li class="nav-item {{ Request::is('slider', 'slider/create', 'slider/*/edit') ? 'active' : '' }}">
+                        <li class="nav-item {{ Request::is('admin-dashboard/slider', 'admin-dashboard/slider/create', 'slider/*/edit') ? 'active' : '' }}">
                             <a href="{{ route('slider.index') }}">
                                 <i class="fas fa-sliders-h"></i>
                                 <p>Slider</p>
@@ -241,9 +241,9 @@
                         </li>
 
                         <li class="nav-item {{ Request::is('admin-dashboard/videos', 'videos.create', 'videos.*.edit', 'categories-videos/create',  'categories-videos/*/edit') ? 'active' : '' }}">
-                            <a href="{{ route('videos.index') }}">
-                                <i class="fas fa-film"></i>
-                                <p>Film/VIdeo</p>
+                            <a href="{{ route('contacts.index') }}">
+                                <i class="fas fa-phone"></i>
+                                <p>Contct</p>
                                 <span class="badge badge-secondary"></span>
                             </a>
                         </li>
@@ -252,6 +252,14 @@
                             <a href="{{ route('testimonial-clients.index') }}">
                                 <i class="fas fa-comments"></i>
                                 <p>Testimonial Client</p>
+                                <span class="badge badge-secondary"></span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item {{ Request::is('admin-dashboard/testimonial-clients', 'videos.create', 'videos.*.edit', 'categories-videos/create',  'categories-videos/*/edit') ? 'active' : '' }}">
+                            <a href="{{ route('our-team.index') }}">
+                                <i class="fas fa-user-friends"></i>
+                                <p>Our Team</p>
                                 <span class="badge badge-secondary"></span>
                             </a>
                         </li>

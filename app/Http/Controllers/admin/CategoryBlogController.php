@@ -11,8 +11,7 @@ class CategoryBlogController extends Controller
 {
     public function create()
     {
-        $user = Auth::user();
-        return view('backend.blog.category.create', compact('user'));
+        return view('backend.blog.category.create');
     }
 
     public function store(Request $request)
@@ -30,9 +29,8 @@ class CategoryBlogController extends Controller
 
     public function edit($id)
     {
-        $user = Auth::user();
         $categoryblog = CategoryBlog::findOrFail($id);
-        return view('backend.blog.category.edit', compact('categoryblog', 'user'));
+        return view('backend.blog.category.edit', compact('categoryblog'));
     }
 
     public function update(Request $request, $id)

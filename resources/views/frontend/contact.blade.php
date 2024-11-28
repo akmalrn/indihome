@@ -1,12 +1,16 @@
 @extends('frontend.layouts')
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
 @section('content')
     <!-- Page Title -->
     <section class="page-title" style="background-image: url(images/background/10.jpg)">
         <div class="auto-container">
-            <h2>Contact us</h2>
+            <h2>Kontak Kami</h2>
             <ul class="bread-crumb clearfix">
-                <li><a href="index.html">Home</a></li>
-                <li>Contact us</li>
+                <li><a href="{{ route('index') }}">Beranda</a></li>
+                <li>Kontak Kami</li>
             </ul>
         </div>
     </section>
@@ -21,35 +25,87 @@
                 <div class="info-column col-lg-4 col-md-12 col-sm-12">
                     <div class="inner-column">
                         <div class="title-box">
-                            <h4>Contact Details</h4>
+                            <h4>
+                                Detail Kontak</h4>
                         </div>
                         <div class="lower-box">
                             <ul class="info-list">
                                 <li>
                                     <span class="icon flaticon-map"></span>
-                                    505 North State Street, <br> London, United Kingdom
+                                    @if (!empty($contact->address))
+                                        {{ $contact->address }}
+                                    @else
+                                        Alamat Kosong
+                                    @endif
                                 </li>
                                 <li>
                                     <span class="icon flaticon-call"></span>
-                                    <a href="tel:+9684-32-45-789">9684 32 45 789</a><br>
-                                    <a href="tel:+9684-32-45-789">9684 32 45 789</a>
+                                    @if (!empty($contact->phone_number))
+                                        <a
+                                            href="https://wa.me/{{ $contact->phone_number }}">{{ $contact->phone_number }}</a>
+                                    @else
+                                        -
+                                    @endif
+                                    <br>
+                                    @if (!empty($contact->phone_number_2))
+                                        <a
+                                            href="https://wa.me/{{ $contact->phone_number_2 }}">{{ $contact->phone_number_2 }}</a>
+                                    @else
+                                        -
+                                    @endif
                                 </li>
                                 <li>
                                     <span class="icon flaticon-email-1"></span>
-                                    <a href="mailto:domain@info.com">domain@info.com</a><br>
-                                    <a href="www.companyname.com">www.companyname.com</a>
+                                    @if (!empty($contact->email_address))
+                                        <a href="mailto:{{ $contact->email_address }}">{{ $contact->email_address }}</a>
+                                    @else
+                                        -
+                                    @endif
+                                    <br>
+                                    @if (!empty($contact->email_address_2))
+                                        <a href="mailto:{{ $contact->email_address_2 }}">{{ $contact->email_address_2 }}</a>
+                                    @else
+                                        -
+                                    @endif
                                 </li>
                             </ul>
-                            <div class="timing">Working hours 08:00 - 22:00</div>
-
+                            @if (!empty($contact->hours))
+                                <div class="timing">Jam Kerja {{ $contact->hours }}</div>
+                            @else
+                                -
+                            @endif
                             <!-- Social Box -->
                             <ul class="social-box">
-                                <li class="facebook"><a href="#" class="fa fa-facebook-f"></a></li>
-                                <li class="twitter"><a href="#" class="fa fa-twitter"></a></li>
-                                <li class="google"><a href="#" class="fa fa-google"></a></li>
-                                <li class="dribbble"><a href="#" class="fa fa-dribbble"></a></li>
-                                <li class="linkedin"><a href="#" class="fa fa-linkedin"></a></li>
-                                <li class="pinterest"><a href="#" class="fa fa-pinterest-p"></a></li>
+                                @if (!empty($contact->facebook))
+                                    <li class="facebook"><a href="{{ $contact->facebook }}" class="fa fa-facebook-f"></a>
+                                    </li>
+                                @else
+
+                                @endif
+                                @if (!empty($contact->email_address))
+                                    <li class="gmail">
+                                        <a href="mailto:{{ $contact->email_address }}">
+                                            <i class="fa fa-envelope"></i> <!-- Or use a Gmail-specific icon -->
+                                        </a>
+                                    </li>
+                                @else
+
+                                @endif
+                                @if (!empty($contact->tiktok))
+                                    <li class="tiktok"><a href="{{ $contact->tiktok }}" target="_blank"
+                                            class="fa fa-tiktok"></a>
+                                    @else
+
+                                @endif
+                                </li>
+                                @if (!empty($contact->phone_number))
+                                    <li class="whatsapp"> <a href="https://wa.me/{{ $contact->phone_number }}"
+                                            target="_blank" class="fa fa-whatsapp"></a>
+                                    </li>
+                                @else
+
+                                @endif
+
                             </ul>
 
                         </div>
@@ -61,9 +117,11 @@
                     <div class="inner-column">
                         <!--Map Outer-->
                         <div class="map-outer">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d805184.6331292129!2d144.49266890254142!3d-37.97123689954809!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad646b5d2ba4df7%3A0x4045675218ccd90!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2s!4v1574408946759!5m2!1sen!2s"
-                                allowfullscreen=""></iframe>
+                            @if (!empty($contact->map))
+                                <iframe src="{{ $contact->map }}" allowfullscreen=""></iframe>
+                            @else
+                                <iframe src="https://www.wanteknologi.com" allowfullscreen=""></iframe>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -73,84 +131,35 @@
             <!-- Contact Form Box -->
             <div class="contact-form-box">
                 <!-- Form Title Box -->
-                <div class="form-title-box">
+                <div class="form-title-box mb-4">
                     <h3>Send a Message</h3>
                 </div>
 
                 <!-- Contact Form -->
-                <div class="contact-form">
-                    <form method="post" action="sendemail.php" id="contact-form">
-                        <div class="row clearfix">
+                <div class="whatsapp-links">
+                    @if (!empty($contact->phone_number))
+                        <a href="https://wa.me/{{ $contact->phone_number }}" target="_blank"
+                            class="whatsapp-btn mb-2 btn btn-primary">
+                            Chat with us on WhatsApp: {{ $contact->phone_number }}
+                        </a>
+                        <br>
+                    @endif
 
-                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                <input type="text" name="username" placeholder="Name" required>
-                            </div>
-
-                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                <input type="email" name="email" placeholder="Email Address" required>
-                            </div>
-
-                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                <input type="text" name="company" placeholder="Company" required>
-                            </div>
-
-                            <div class="col-lg-6 col-md-6 col-sm-12 form-group">
-                                <input type="text" name="phone" placeholder="Phone" required>
-                            </div>
-
-                            <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                <textarea class="darma" name="message" placeholder="Write Your Message..."></textarea>
-                            </div>
-
-                            <div class="col-lg-12 col-md-12 col-sm-12 form-group text-center">
-                                <button class="theme-btn btn-style-four" type="submit" name="submit-form"><span
-                                        class="txt">Submit Now</span></button>
-                            </div>
-
-                        </div>
-                    </form>
+                    @if (!empty($contact->phone_number_2))
+                        <a href="https://wa.me/{{ $contact->phone_number_2 }}" target="_blank"
+                            class="whatsapp-btn btn btn-primary">
+                            Chat with us on WhatsApp: {{ $contact->phone_number_2 }}
+                        </a>
+                    @endif
                 </div>
 
             </div>
+
             <!-- End Contact Form Box -->
 
         </div>
     </section>
     <!-- End Contact Page Section -->
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="auto-container">
-            <div class="inner-container" style="background-image: url(images/background/pattern-11.png)">
-                <div class="row clearfix">
 
-                    <!-- Title Column -->
-                    <div class="title-column col-lg-6 col-md-12 col-sm-12">
-                        <div class="inner-column">
-                            <h3>Sign up for our newsletter</h3>
-                            <div class="text">Stay up to update with our latest news and products.</div>
-                        </div>
-                    </div>
-
-                    <!-- Form Column -->
-                    <div class="form-column col-lg-6 col-md-12 col-sm-12">
-                        <div class="inner-column">
-                            <div class="newsletter-form">
-                                <form method="post" action="contact.html">
-                                    <div class="form-group">
-                                        <input type="email" name="email" value="" placeholder="Your Email Address"
-                                            required="">
-                                        <button type="submit" class="theme-btn btn-style-five"><span
-                                                class="txt">Subscribe</span></button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End CTA Section -->
 @endsection

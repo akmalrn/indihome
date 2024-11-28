@@ -32,15 +32,14 @@
                             <h4 class="card-title">Create New Category</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('blogs.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('categories-blogs.store') }}" method="POST">
                                 @csrf
-
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group form-group-default">
                                             <label for="category">Category</label>
                                             <input id="category" type="text" class="form-control" name="category"
-                                                placeholder="Enter slider category" required>
+                                                placeholder="Enter Blog category" required>
                                         </div>
                                     </div>
                                 </div>

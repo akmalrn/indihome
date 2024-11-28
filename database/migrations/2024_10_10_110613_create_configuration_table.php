@@ -17,13 +17,6 @@ return new class extends Migration
             $table->string('path_logo')->nullable();
             $table->string('website_name')->nullable();
             $table->string('title')->nullable();
-            $table->string('phone_number')->nullable();
-            $table->string('email_address')->nullable();
-            $table->string('facebook')->nullable();
-            $table->string('twitter')->nullable();
-            $table->string('skype')->nullable();
-            $table->string('linkedin')->nullable();
-            $table->string('dribbble')->nullable();
             $table->text('meta_keywords')->nullable();
             $table->text('meta_descriptions')->nullable();
             $table->string('footer')->nullable();

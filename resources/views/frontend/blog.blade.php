@@ -2,12 +2,13 @@
 @section('content')
 
 	<!-- Page Title -->
-    <section class="page-title" style="background-image: url(images/background/10.jpg)">
+    <section class="page-title" style="background-image: url('{{ asset('images/background/10.jpg') }}')">
+
         <div class="auto-container">
-			<h2>Blog News</h2>
+			<h2>Berita Blog</h2>
 			<ul class="bread-crumb clearfix">
-				<li><a href="index.html">Home</a></li>
-				<li>Blog News</li>
+				<li><a href="{{ route('index') }}">Beranda</a></li>
+				<li>Berita Blog</li>
 			</ul>
         </div>
     </section>
@@ -20,82 +21,36 @@
 
 				<!-- Content Side -->
                 <div class="content-side col-lg-8 col-md-12 col-sm-12">
-                	<div class="blog-classic">
+                    <div class="blog-classic">
 
-						<!-- News Block Two -->
-						<div class="news-block-two">
-							<div class="inner-box">
-								<div class="image">
-									<a href="news-detail.html"><img src="images/resource/news-4.jpg" alt="" /></a>
-								</div>
-								<div class="lower-content">
-									<ul class="post-meta">
-										<li><span class="icon flaticon-user"></span>By Admin</li>
-										<li><span class="icon flaticon-chat-2"></span>3 comments</li>
-									</ul>
-									<h4><a href="news-detail.html">This Fun Site is All About Tracking Start Technologie</a></h4>
-									<div class="text">On the internet, an endless source of industry insights, news and tips are at your fingertips - but how do you know which are worth reading? Here are the top business blogevery entre preneur should stay on top of Forbes describes itself as "a leading source for reliable business news and financial information" and Forbes' Entrepreneurs section is a leading source for reliable business news and financial information for you guessed it entrepreneurs</div>
-									<a href="news-detail.html" class="theme-btn btn-style-four"><span class="txt">Read More <i class="lnr lnr-arrow-right"></i></span></a>
-								</div>
-							</div>
-						</div>
+                        <!-- News Block Two -->
+                        @foreach ($blogs as $blog)
+                        <div class="news-block-two">
+                            <div class="inner-box">
+                                <div class="image">
+                                    <a href="{{ route('blog-detail', $blog->id) }}"><img src="{{ asset('uploads/blogs/'. $blog->path) }}" alt="" /></a>
+                                </div>
+                                <div class="lower-content">
+                                    <ul class="post-meta">
+                                        <li><span class="icon flaticon-user"></span>By Admin</li>
+                                        <li><span class="icon flaticon-chat-2"></span></li>
+                                    </ul>
+                                    <h4><a href="{{ route('blog-detail', $blog->id) }}">{{ $blog->title }}</a></h4>
+                                    <div class="text">{{ $blog->overview }}</div>
+                                    <a href="{{ route('blog-detail', $blog->id) }}" class="theme-btn btn-style-four"><span class="txt">Read More <i class="lnr lnr-arrow-right"></i></span></a>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
 
-						<!-- News Block Two -->
-						<div class="news-block-two">
-							<div class="inner-box">
-								<div class="image">
-									<a href="news-detail.html"><img src="images/resource/news-5.jpg" alt="" /></a>
-								</div>
-								<div class="lower-content">
-									<ul class="post-meta">
-										<li><span class="icon flaticon-user"></span>By Admin</li>
-										<li><span class="icon flaticon-chat-2"></span>3 comments</li>
-									</ul>
-									<h4><a href="news-detail.html">This Fun Site is All About Tracking Start Technologie</a></h4>
-									<div class="text">On the internet, an endless source of industry insights, news and tips are at your fingertips - but how do you know which are worth reading? Here are the top business blogevery entre preneur should stay on top of Forbes describes itself as "a leading source for reliable business news and financial information" and Forbes' Entrepreneurs section is a leading source for reliable business news and financial information for you guessed it entrepreneurs</div>
-									<a href="news-detail.html" class="theme-btn btn-style-four"><span class="txt">Read More <i class="lnr lnr-arrow-right"></i></span></a>
-								</div>
-							</div>
-						</div>
+                    </div>
 
-						<!-- News Block Two -->
-						<div class="news-block-two">
-							<div class="inner-box">
-								<div class="image">
-									<a href="news-detail.html"><img src="images/resource/news-6.jpg" alt="" /></a>
-								</div>
-								<div class="lower-content">
-									<ul class="post-meta">
-										<li><span class="icon flaticon-user"></span>By Admin</li>
-										<li><span class="icon flaticon-chat-2"></span>3 comments</li>
-									</ul>
-									<h4><a href="news-detail.html">This Fun Site is All About Tracking Start Technologie</a></h4>
-									<div class="text">On the internet, an endless source of industry insights, news and tips are at your fingertips - but how do you know which are worth reading? Here are the top business blogevery entre preneur should stay on top of Forbes describes itself as "a leading source for reliable business news and financial information" and Forbes' Entrepreneurs section is a leading source for reliable business news and financial information for you guessed it entrepreneurs</div>
-									<a href="news-detail.html" class="theme-btn btn-style-four"><span class="txt">Read More <i class="lnr lnr-arrow-right"></i></span></a>
-								</div>
-							</div>
-						</div>
+                    <!-- Pagination -->
+                    <div class="pagination-wrapper">
+                        {{ $blogs->links('pagination::bootstrap-4') }}
+                    </div>
+                </div>
 
-						<!-- News Block Two -->
-						<div class="news-block-two">
-							<div class="inner-box">
-								<div class="image">
-									<a href="news-detail.html"><img src="images/resource/news-7.jpg" alt="" /></a>
-								</div>
-								<div class="lower-content">
-									<ul class="post-meta">
-										<li><span class="icon flaticon-user"></span>By Admin</li>
-										<li><span class="icon flaticon-chat-2"></span>3 comments</li>
-									</ul>
-									<h4><a href="news-detail.html">This Fun Site is All About Tracking Start Technologie</a></h4>
-									<div class="text">On the internet, an endless source of industry insights, news and tips are at your fingertips - but how do you know which are worth reading? Here are the top business blogevery entre preneur should stay on top of Forbes describes itself as "a leading source for reliable business news and financial information" and Forbes' Entrepreneurs section is a leading source for reliable business news and financial information for you guessed it entrepreneurs</div>
-									<a href="news-detail.html" class="theme-btn btn-style-four"><span class="txt">Read More <i class="lnr lnr-arrow-right"></i></span></a>
-								</div>
-							</div>
-						</div>
-
-					</div>
-				</div>
 
 				<!-- Sidebar Side -->
                 <div class="sidebar-side col-lg-4 col-md-12 col-sm-12">
@@ -103,26 +58,25 @@
 
 						<!-- Search -->
 						<div class="sidebar-widget search-box">
-							<form method="post" action="contact.html">
-								<div class="form-group">
-									<input type="search" name="search-field" value="" placeholder="Search Here ..." required>
-									<button type="submit"><span class="icon fa fa-search"></span></button>
-								</div>
-							</form>
+							<form method="GET" action="{{ route('blogs.search') }}">
+                                <div class="form-group">
+                                    <input type="search" name="query" value="{{ request('query') }}" placeholder="Search Here ..." required>
+                                    <button type="submit"><span class="icon fa fa-search"></span></button>
+                                </div>
+                            </form>
 						</div>
 
 						<!-- Services Widget -->
 						<div class="sidebar-widget services-widget">
 							<div class="widget-content">
 								<div class="sidebar-title">
-									<h5>Our Services</h5>
+									<h5>Kategory</h5>
 								</div>
 								<ul class="service-list">
-									<li><a href="#">Broadband</a></li>
-									<li><a href="#">TV & Streaming</a></li>
-									<li><a href="#">Satellite TV</a></li>
-									<li><a href="#">Home Phone</a></li>
-									<li><a href="#">Home Security</a></li>
+                                    @foreach ($categoryBlogs as $category)
+                                    <li><a href="#">{{ $category->category }}</a></li>
+                                    @endforeach
+
 								</ul>
 							</div>
 						</div>
@@ -131,31 +85,18 @@
                         <div class="sidebar-widget popular-posts">
 							<div class="widget-content">
 								<div class="sidebar-title">
-									<h5>Latest Post</h5>
+									<h5>
+                                        Postingan Terbaru</h5>
 								</div>
-								<article class="post">
-									<figure class="post-thumb"><img src="images/resource/post-thumb-3.jpg" alt=""><a href="news-detail.html" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
-									<div class="text"><a href="news-detail.html">Everyone knows that duct tape</a></div>
-									<div class="post-info">Nov 28, 2017 <span>Yammi Guan</span></div>
+                                @foreach ($blogs as $blog)
+                                <article class="post">
+									<figure class="post-thumb"><img src="{{ asset('uploads/blogs/'. $blog->path) }}" alt=""><a href="news-detail.html" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
+									<div class="text"><a href="{{ route('blog-detail', $blog->id) }}">{{ $blog->title }}</a></div>
+									<div class="post-info">{{ $blog->created_at->format('d-m-Y') }}
+                                        <span></span></div>
 								</article>
+                                @endforeach
 
-								<article class="post">
-									<figure class="post-thumb"><img src="images/resource/post-thumb-4.jpg" alt=""><a href="news-detail.html" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
-									<div class="text"><a href="news-detail.html">Everyone knows that duct tape</a></div>
-									<div class="post-info">Nov 28, 2017 <span>Yammi Guan</span></div>
-								</article>
-
-								<article class="post">
-									<figure class="post-thumb"><img src="images/resource/post-thumb-5.jpg" alt=""><a href="news-detail.html" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
-									<div class="text"><a href="news-detail.html">Everyone knows that duct tape</a></div>
-									<div class="post-info">Nov 28, 2017 <span>Yammi Guan</span></div>
-								</article>
-
-								<article class="post">
-									<figure class="post-thumb"><img src="images/resource/post-thumb-6.jpg" alt=""><a href="news-detail.html" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
-									<div class="text"><a href="news-detail.html">Everyone knows that duct tape</a></div>
-									<div class="post-info">Nov 28, 2017 <span>Yammi Guan</span></div>
-								</article>
 
 							</div>
 						</div>
@@ -166,14 +107,11 @@
 								<div class="sidebar-title">
 									<h5>Tags</h5>
 								</div>
-								<a href="#">Nextbit</a>
-								<a href="#">Finance</a>
-								<a href="#">Corporte</a>
-								<a href="#">Creative</a>
-								<a href="#">Design</a>
-								<a href="#">Business</a>
-								<a href="#">world</a>
-								<a href="#">Construction</a>
+								<p>
+                                    @foreach (explode(',', $configuration->meta_keywords ?? 'Default Keyword') as $keyword)
+                                        <a href="">{{ trim($keyword) }}</a>
+                                    @endforeach
+                                </p>
 							</div>
 						</div>
 
@@ -185,38 +123,5 @@
 	</section>
 	<!-- End Sidebar Page Container -->
 
-	<!-- CTA Section -->
-	<section class="cta-section">
-		<div class="auto-container">
-			<div class="inner-container" style="background-image: url(images/background/pattern-11.png)">
-				<div class="row clearfix">
-
-					<!-- Title Column -->
-					<div class="title-column col-lg-6 col-md-12 col-sm-12">
-						<div class="inner-column">
-							<h3>Sign up for our newsletter</h3>
-							<div class="text">Stay up to update with our latest news and products.</div>
-						</div>
-					</div>
-
-					<!-- Form Column -->
-					<div class="form-column col-lg-6 col-md-12 col-sm-12">
-						<div class="inner-column">
-							<div class="newsletter-form">
-								<form method="post" action="contact.html">
-									<div class="form-group">
-										<input type="email" name="email" value="" placeholder="Your Email Address" required="">
-										<button type="submit" class="theme-btn btn-style-five"><span class="txt">Subscribe</span></button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End CTA Section -->
 
 	@endsection

@@ -107,44 +107,11 @@
                             <div class="pattern-layer" style="background-image: url(images/background/pattern-14.png)">
                             </div>
                             {!! $superiority->icon !!}
-                            <h5><a href="">{{ $superiority->title }}</a></h5>
+                            <h5><a href="{{ route('services') }}">{{ $superiority->title }}</a></h5>
                             <div class="text">{!! $superiority->description !!}</div>
                         </div>
                     </div>
                 @endforeach
-
-                <!-- Facility Block -->
-                <div class="facility-block col-lg-3 col-md-6 col-sm-12">
-                    <div class="inner-box">
-                        <div class="pattern-layer" style="background-image: url(images/background/pattern-14.png)"></div>
-                        <div class="icon-box flaticon-5g"></div>
-                        <h5><a href="services-detail.html">Ultrafast Connect</a></h5>
-                        <div class="text">Lorem ipsum dolor sit amet them consec tetur elit sed do eiumod. Donec quam
-                            felis ies nec.</div>
-                    </div>
-                </div>
-
-                <!-- Facility Block -->
-                <div class="facility-block col-lg-3 col-md-6 col-sm-12">
-                    <div class="inner-box">
-                        <div class="pattern-layer" style="background-image: url(images/background/pattern-14.png)"></div>
-                        <div class="icon-box flaticon-8k"></div>
-                        <h5><a href="services-detail.html">4K and 8K Quality</a></h5>
-                        <div class="text">Lorem ipsum dolor sit amet them consec tetur elit sed do eiumod. Donec quam
-                            felis ies nec.</div>
-                    </div>
-                </div>
-
-                <!-- Facility Block -->
-                <div class="facility-block col-lg-3 col-md-6 col-sm-12">
-                    <div class="inner-box">
-                        <div class="pattern-layer" style="background-image: url(images/background/pattern-14.png)"></div>
-                        <div class="icon-box flaticon-customer-service"></div>
-                        <h5><a href="contact.html">Fast Support 24/7</a></h5>
-                        <div class="text">Lorem ipsum dolor sit amet them consec tetur elit sed do eiumod. Donec quam
-                            felis ies nec.</div>
-                    </div>
-                </div>
 
             </div>
 
@@ -159,245 +126,47 @@
             <!-- Sec Title -->
             <div class="sec-title centered light">
                 <div class="separator"></div>
-                <h2>Meet Our Experts</h2>
+                <h2>
+                    Temui Pakar Kami</h2>
             </div>
             <!-- End Sec Title -->
 
             <div class="three-item-carousel owl-carousel owl-theme">
 
                 <!-- Team Block -->
+                @foreach ($ourteam as $team)
                 <div class="team-block">
                     <div class="inner-box">
                         <div class="image">
-                            <img src="images/resource/team-1.jpg" alt="" />
+                            <img src="{{ asset($team->path) }}" alt="" style="width: 480px; height: 400px;">
                             <div class="overlay-box">
-                                <h6>Taofiqul Hakim</h6>
-                                <div class="designation">Senior Architect</div>
+                                <h6>{{ $team->name }}</h6>
+                                <div class="designation">{{ $team->position }}</div>
                             </div>
                             <div class="overlay-box-two">
-                                <h6>Taofiqul Hakim</h6>
-                                <div class="designation">Senior Architect</div>
-                                <div class="text">Neque porro quisquam est qui dolorem ipsum quia he dolor sit amet,
-                                    consec tetur adipisci velit adipisci velit.</div>
+                                <h6>{{ $team->name }}</h6>
+                                <div class="designation">{{ $team->position }}</div>
+                                <div class="text">{!! $team->description !!}</div>
                                 <!-- Social Box -->
                                 <ul class="social-box">
-                                    <li><a href="https://www.facebook.com/" class="fa fa-facebook-f"></a></li>
-                                    <li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>
-                                    <li><a href="https://dribbble.com/" class="fa fa-dribbble"></a></li>
-                                    <li><a href="https://www.linkedin.com/" class="fa fa-linkedin"></a></li>
+                                    @if ($team->facebook)
+                                        <li><a href="{{ $team->facebook }}" class="fa fa-facebook-f" target="_blank"></a></li>
+                                    @endif
+                                    @if ($team->twitter)
+                                        <li><a href="{{ $team->twitter }}" class="fa fa-twitter" target="_blank"></a></li>
+                                    @endif
+                                    @if ($team->dribbble)
+                                        <li><a href="{{ $team->dribbble }}" class="fa fa-dribbble" target="_blank"></a></li>
+                                    @endif
+                                    @if ($team->linkedin)
+                                        <li><a href="{{ $team->linkedin }}" class="fa fa-linkedin" target="_blank"></a></li>
+                                    @endif
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Team Block -->
-                <div class="team-block">
-                    <div class="inner-box">
-                        <div class="image">
-                            <img src="images/resource/team-2.jpg" alt="" />
-                            <div class="overlay-box">
-                                <h6>Raymond Turner</h6>
-                                <div class="designation">Senior Architect</div>
-                            </div>
-                            <div class="overlay-box-two">
-                                <h6>Raymond Turner</h6>
-                                <div class="designation">Senior Architect</div>
-                                <div class="text">Neque porro quisquam est qui dolorem ipsum quia he dolor sit amet,
-                                    consec tetur adipisci velit adipisci velit.</div>
-                                <!-- Social Box -->
-                                <ul class="social-box">
-                                    <li><a href="https://www.facebook.com/" class="fa fa-facebook-f"></a></li>
-                                    <li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>
-                                    <li><a href="https://dribbble.com/" class="fa fa-dribbble"></a></li>
-                                    <li><a href="https://www.linkedin.com/" class="fa fa-linkedin"></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Team Block -->
-                <div class="team-block">
-                    <div class="inner-box">
-                        <div class="image">
-                            <img src="images/resource/team-3.jpg" alt="" />
-                            <div class="overlay-box">
-                                <h6>Taofiqul Hakim</h6>
-                                <div class="designation">Senior Architect</div>
-                            </div>
-                            <div class="overlay-box-two">
-                                <h6>Taofiqul Hakim</h6>
-                                <div class="designation">Senior Architect</div>
-                                <div class="text">Neque porro quisquam est qui dolorem ipsum quia he dolor sit amet,
-                                    consec tetur adipisci velit adipisci velit.</div>
-                                <!-- Social Box -->
-                                <ul class="social-box">
-                                    <li><a href="https://www.facebook.com/" class="fa fa-facebook-f"></a></li>
-                                    <li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>
-                                    <li><a href="https://dribbble.com/" class="fa fa-dribbble"></a></li>
-                                    <li><a href="https://www.linkedin.com/" class="fa fa-linkedin"></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Team Block -->
-                <div class="team-block">
-                    <div class="inner-box">
-                        <div class="image">
-                            <img src="images/resource/team-1.jpg" alt="" />
-                            <div class="overlay-box">
-                                <h6>Taofiqul Hakim</h6>
-                                <div class="designation">Senior Architect</div>
-                            </div>
-                            <div class="overlay-box-two">
-                                <h6>Taofiqul Hakim</h6>
-                                <div class="designation">Senior Architect</div>
-                                <div class="text">Neque porro quisquam est qui dolorem ipsum quia he dolor sit amet,
-                                    consec tetur adipisci velit adipisci velit.</div>
-                                <!-- Social Box -->
-                                <ul class="social-box">
-                                    <li><a href="https://www.facebook.com/" class="fa fa-facebook-f"></a></li>
-                                    <li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>
-                                    <li><a href="https://dribbble.com/" class="fa fa-dribbble"></a></li>
-                                    <li><a href="https://www.linkedin.com/" class="fa fa-linkedin"></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Team Block -->
-                <div class="team-block">
-                    <div class="inner-box">
-                        <div class="image">
-                            <img src="images/resource/team-2.jpg" alt="" />
-                            <div class="overlay-box">
-                                <h6>Raymond Turner</h6>
-                                <div class="designation">Senior Architect</div>
-                            </div>
-                            <div class="overlay-box-two">
-                                <h6>Raymond Turner</h6>
-                                <div class="designation">Senior Architect</div>
-                                <div class="text">Neque porro quisquam est qui dolorem ipsum quia he dolor sit amet,
-                                    consec tetur adipisci velit adipisci velit.</div>
-                                <!-- Social Box -->
-                                <ul class="social-box">
-                                    <li><a href="https://www.facebook.com/" class="fa fa-facebook-f"></a></li>
-                                    <li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>
-                                    <li><a href="https://dribbble.com/" class="fa fa-dribbble"></a></li>
-                                    <li><a href="https://www.linkedin.com/" class="fa fa-linkedin"></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Team Block -->
-                <div class="team-block">
-                    <div class="inner-box">
-                        <div class="image">
-                            <img src="images/resource/team-3.jpg" alt="" />
-                            <div class="overlay-box">
-                                <h6>Taofiqul Hakim</h6>
-                                <div class="designation">Senior Architect</div>
-                            </div>
-                            <div class="overlay-box-two">
-                                <h6>Taofiqul Hakim</h6>
-                                <div class="designation">Senior Architect</div>
-                                <div class="text">Neque porro quisquam est qui dolorem ipsum quia he dolor sit amet,
-                                    consec tetur adipisci velit adipisci velit.</div>
-                                <!-- Social Box -->
-                                <ul class="social-box">
-                                    <li><a href="https://www.facebook.com/" class="fa fa-facebook-f"></a></li>
-                                    <li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>
-                                    <li><a href="https://dribbble.com/" class="fa fa-dribbble"></a></li>
-                                    <li><a href="https://www.linkedin.com/" class="fa fa-linkedin"></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Team Block -->
-                <div class="team-block">
-                    <div class="inner-box">
-                        <div class="image">
-                            <img src="images/resource/team-1.jpg" alt="" />
-                            <div class="overlay-box">
-                                <h6>Taofiqul Hakim</h6>
-                                <div class="designation">Senior Architect</div>
-                            </div>
-                            <div class="overlay-box-two">
-                                <h6>Taofiqul Hakim</h6>
-                                <div class="designation">Senior Architect</div>
-                                <div class="text">Neque porro quisquam est qui dolorem ipsum quia he dolor sit amet,
-                                    consec tetur adipisci velit adipisci velit.</div>
-                                <!-- Social Box -->
-                                <ul class="social-box">
-                                    <li><a href="https://www.facebook.com/" class="fa fa-facebook-f"></a></li>
-                                    <li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>
-                                    <li><a href="https://dribbble.com/" class="fa fa-dribbble"></a></li>
-                                    <li><a href="https://www.linkedin.com/" class="fa fa-linkedin"></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Team Block -->
-                <div class="team-block">
-                    <div class="inner-box">
-                        <div class="image">
-                            <img src="images/resource/team-2.jpg" alt="" />
-                            <div class="overlay-box">
-                                <h6>Raymond Turner</h6>
-                                <div class="designation">Senior Architect</div>
-                            </div>
-                            <div class="overlay-box-two">
-                                <h6>Raymond Turner</h6>
-                                <div class="designation">Senior Architect</div>
-                                <div class="text">Neque porro quisquam est qui dolorem ipsum quia he dolor sit amet,
-                                    consec tetur adipisci velit adipisci velit.</div>
-                                <!-- Social Box -->
-                                <ul class="social-box">
-                                    <li><a href="https://www.facebook.com/" class="fa fa-facebook-f"></a></li>
-                                    <li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>
-                                    <li><a href="https://dribbble.com/" class="fa fa-dribbble"></a></li>
-                                    <li><a href="https://www.linkedin.com/" class="fa fa-linkedin"></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Team Block -->
-                <div class="team-block">
-                    <div class="inner-box">
-                        <div class="image">
-                            <img src="images/resource/team-3.jpg" alt="" />
-                            <div class="overlay-box">
-                                <h6>Taofiqul Hakim</h6>
-                                <div class="designation">Senior Architect</div>
-                            </div>
-                            <div class="overlay-box-two">
-                                <h6>Taofiqul Hakim</h6>
-                                <div class="designation">Senior Architect</div>
-                                <div class="text">Neque porro quisquam est qui dolorem ipsum quia he dolor sit amet,
-                                    consec tetur adipisci velit adipisci velit.</div>
-                                <!-- Social Box -->
-                                <ul class="social-box">
-                                    <li><a href="https://www.facebook.com/" class="fa fa-facebook-f"></a></li>
-                                    <li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>
-                                    <li><a href="https://dribbble.com/" class="fa fa-dribbble"></a></li>
-                                    <li><a href="https://www.linkedin.com/" class="fa fa-linkedin"></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            @endforeach
 
             </div>
         </div>
@@ -475,39 +244,4 @@
     </section>
     <!-- End Clients Section / Style Two -->
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="auto-container">
-            <div class="inner-container" style="background-image: url(images/background/pattern-11.png)">
-                <div class="row clearfix">
-
-                    <!-- Title Column -->
-                    <div class="title-column col-lg-6 col-md-12 col-sm-12">
-                        <div class="inner-column">
-                            <h3>Sign up for our newsletter</h3>
-                            <div class="text">Stay up to update with our latest news and products.</div>
-                        </div>
-                    </div>
-
-                    <!-- Form Column -->
-                    <div class="form-column col-lg-6 col-md-12 col-sm-12">
-                        <div class="inner-column">
-                            <div class="newsletter-form">
-                                <form method="post" action="contact.html">
-                                    <div class="form-group">
-                                        <input type="email" name="email" value=""
-                                            placeholder="Your Email Address" required="">
-                                        <button type="submit" class="theme-btn btn-style-five"><span
-                                                class="txt">Subscribe</span></button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End CTA Section -->
 @endsection

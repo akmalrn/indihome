@@ -33,7 +33,30 @@
                     </div>
                 @endforeach
             @else
-                <p style="text-align:center;">Slider Kosong</p>
+            <div class="slide">
+                <div class="pattern-layer" style="background-image: url(images/main-slider/pattern-layer.png)"></div>
+                <div class="color-layer-one"></div>
+                <div class="color-layer-two"></div>
+                <div class="color-layer-three"></div>
+                <div class="auto-container">
+
+                    <!-- Content Boxed -->
+                    <div class="content-boxed">
+                        <div class="inner-box">
+                            <div class="title">Kosong</div>
+                            <h1>Kosong</h1>
+                            <div class="btns-box">
+                                <a href="{{ route('about') }}" class="theme-btn btn-style-two"><span
+                                        class="txt">Read More
+                                        <i class="lnr lnr-arrow-right"></i></span></a>
+                                <a href="{{ route('contact') }}" class="theme-btn btn-style-three"><span
+                                        class="txt">Contact Now <i class="lnr lnr-arrow-right"></i></span></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
             @endif
         </div>
 
@@ -48,7 +71,7 @@
                 <!-- Title Column -->
                 <div class="title-column col-lg-6 col-md-12 col-sm-12">
                     <div class="inner-column">
-                        <h3>Mari temukan penawaran dan layanan yang tersedia di wilayah Anda</h3>
+                        <h3>Hubungi Kami Untuk Mendapatkan Layanan</h3>
                     </div>
                 </div>
 
@@ -56,14 +79,15 @@
                 <div class="form-column col-lg-6 col-md-12 col-sm-12">
                     <div class="inner-column">
                         <div class="appointment-form">
-                            <form method="post" action="contact.html">
+                            <a href="https://wa.me/{{ $contact->phone_number }}" target="blank">
                                 <div class="form-group">
-                                    <input type="email" name="email" value=""
-                                        placeholder="Enter street address & apartment" required="">
-                                    <button type="submit" class="theme-btn btn-style-two"><span class="txt">Check
-                                            Availability <i class="lnr lnr-arrow-right"></i></span></button>
+                                    <input type="email" name="email" value="" placeholder="Disini ---->>>"
+                                        required="">
+                                    <button type="submit" class="theme-btn btn-style-five"><span
+                                            class="txt">WhatsApp</span></button>
+
                                 </div>
-                            </form>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -80,13 +104,12 @@
             <!-- Upper Section -->
             <div class="upper-section">
                 <div class="row clearfix">
-
-                    @foreach ($typeServices as $type)
+                    @foreach ($categoryservices as $category)
                         <div class="service-block col-lg-4 col-md-6 col-sm-12">
                             <div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
                                 <span class="border-one"></span>
                                 <span class="border-two"></span>
-                                <h4><a href="">{{ $type->title }}</a></h4>
+                                <h4><a href="">{{ $category->category }}</a></h4>
                                 <div class="text">IndiHome adalah layanan digital terintegrasi yang disediakan oleh Telkom
                                     Indonesia.</div>
                                 <div class="icon"><img src="images/icons/service-1.svg" alt="" /></div>
@@ -143,7 +166,7 @@
                             </div>
                             <div class="text">
                                 @if ($whyus && $whyus->description)
-                                    {{ $whyus->description }}
+                                    {!! $whyus->description !!}
                                 @else
                                     Deskripsi Kosong
                                 @endif
@@ -369,92 +392,8 @@
     <!-- End Clients Section -->
 
     <!-- Featured Section -->
-    <section class="featured-section">
-        <div class="pattern-layer-one" style="background-image: url(images/background/pattern-9.png)"></div>
-        <div class="pattern-layer-two" style="background-image: url(images/background/pattern-10.png)"></div>
-        <div class="auto-container">
 
-            <!-- Sec Title -->
-            <div class="sec-title light">
-                <div class="clearfix">
-                    <div class="pull-left">
-                        <div class="title">Sekarang Ditampilkan</div>
-                        <h2>Pertunjukan unggulan</h2>
-                    </div>
-                    <div class="pull-right">
-                        <div class="button-box">
-                            <a href="{{ route('movie') }}" class="theme-btn btn-style-two"><span class="txt">View
-                                    More <i class="lnr lnr-arrow-right"></i></span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Sec Title -->
-
-            <div class="row clearfix">
-
-                <!-- Feature Block -->
-                @foreach ($videos as $video)
-                    <div class="feature-block">
-                        <div class="inner-box">
-                            <div class="image"> <a href="{{ $video->youtube }}" class="lightbox-image video-box"
-                                    target="_blank"> <span class="flaticon-play-arrow"><i class="ripple"></i></span> </a>
-                                <img src="{{ asset('uploads/videos/' . $video->path) }}" alt="Gambar" />
-                                <div class="overlay-box"> {{-- <ul class="post-meta">                                    <li><span class="icon fa fa-star"></span>5.7</li>                                    <li><span class="icon fa fa-comment"></span>25</li>                                </ul> --}} </div>
-                            </div>
-                            <div class="lower-content">
-                                <div class="clearfix">
-                                    <div class="pull-left">
-                                        <h6><a href="{{ route('movie') }}">{{ $video->name }}</a></h6>
-                                    </div>
-                                    <div class="pull-right">
-                                        <div class="year">{{ $video->year }}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-
-            </div>
-
-        </div>
-    </section>
     <!-- End Featured Section -->
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="auto-container">
-            <div class="inner-container" style="background-image: url(images/background/pattern-11.png)">
-                <div class="row clearfix">
 
-                    <!-- Title Column -->
-                    <div class="title-column col-lg-6 col-md-12 col-sm-12">
-                        <div class="inner-column">
-                            <h3>Sign up for our newsletter</h3>
-                            <div class="text">Stay up to update with our latest news and products.</div>
-                        </div>
-                    </div>
-
-                    <!-- Form Column -->
-                    <div class="form-column col-lg-6 col-md-12 col-sm-12">
-                        <div class="inner-column">
-                            <div class="newsletter-form">
-                                <form method="post" action="{{ route('contact') }}">
-                                    <div class="form-group">
-                                        <input type="email" name="email" value=""
-                                            placeholder="Your Email Address" required="">
-                                        <button type="submit" class="theme-btn btn-style-five"><span
-                                                class="txt">Subscribe</span></button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End CTA Section -->
 @endsection

@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8">
     @if (!empty($configuration->title))
-    <title>{{ $configuration->title }}</title>
+        <title>{{ $configuration->title }}</title>
     @else
-    <title>Website</title>
+        <title>Website</title>
     @endif
     <!-- Stylesheets -->
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
@@ -28,8 +28,8 @@
 
 
     @if (!empty($configuration->path_logo))
-        <link rel="shortcut icon" href="{{ $configuration->path_logo }}" type="image/x-icon">
-        <link rel="icon" href="{{ $configuration->path_logo }}" type="image/x-icon">
+        <link rel="shortcut icon" href="{{ asset($configuration->path_logo) }}" type="image/x-icon">
+        <link rel="icon" href="{{ asset($configuration->path_logo) }}" type="image/x-icon">
     @else
     @endif
 
@@ -58,16 +58,16 @@
 
                     <div class="pull-left">
                         <ul class="info">
-                            @if (!empty($configuration->phone_number))
-                                <li><a href="https://wa.me/{{ $configuration->phone_number }}"><span
+                            @if (!empty($contact->phone_number))
+                                <li><a href="https://wa.me/{{ $contact->phone_number }}"><span
                                             class="icon flaticon-phone"></span>Panggil:
-                                        +{{ $configuration->phone_number }}</a></li>
+                                        +{{ $contact->phone_number }}</a></li>
                             @else
                                 -
                             @endif
-                            @if (!empty($configuration->email_address))
-                                <li><a href="mailto:{{ $configuration->email_address }}"><span
-                                            class="icon flaticon-email-2"></span>{{ $configuration->email_address }}</a>
+                            @if (!empty($contact->email_address))
+                                <li><a href="mailto:{{ $contact->email_address }}"><span
+                                            class="icon flaticon-email-2"></span>{{ $contact->email_address }}</a>
                                 </li>
                             @else
                                 -
@@ -78,25 +78,29 @@
                     <div class="pull-right clearfix">
                         <!-- Social Box -->
                         <ul class="social-box">
-                            @if (!empty($configuration->facebook))
-                                <li><a href="{{ $configuration->facebook }}" class="fa fa-facebook-f"></a></li>
+                            @if (!empty($contact->facebook))
+                                <li class="facebook"><a href="{{ $contact->facebook }}" class="fa fa-facebook-f"></a>
+                                </li>
                             @else
-                                -
                             @endif
-                            @if (!empty($configuration->twitter))
-                                <li><a href="{{ $configuration->twitter }}" class="fa fa-twitter"></a></li>
+                            @if (!empty($contact->email_address))
+                                <li class="gmail">
+                                    <a href="mailto:{{ $contact->email_address }}" class="fa fa-envelope">
+                                    </a>
+                                </li>
                             @else
-                                -
                             @endif
-                            @if (!empty($configuration->dribbble))
-                                <li><a href="{{ $configuration->dribbble }}" class="fa fa-dribbble"></a></li>
-                            @else
-                                -
+                            @if (!empty($contact->tiktok))
+                                <li class="tiktok"><a href="{{ $contact->tiktok }}" target="_blank"
+                                        class="fa fa-tiktok"></a>
+                                @else
                             @endif
-                            @if (!empty($configuration->linkedin))
-                                <li><a href="{{ $configuration->linkedin }}" class="fa fa-linkedin"></a></li>
+                            </li>
+                            @if (!empty($contact->phone_number))
+                                <li class="whatsapp"> <a href="https://wa.me/{{ $contact->phone_number }}"
+                                        target="_blank" class="fa fa-whatsapp"></a>
+                                </li>
                             @else
-                                -
                             @endif
                         </ul>
                     </div>
@@ -147,12 +151,11 @@
                                         </li>
 
                                         <li
-                                            class="dropdown {{ in_array(Route::currentRouteName(), ['about', 'price', 'movie']) ? 'current' : '' }}">
+                                            class="dropdown {{ in_array(Route::currentRouteName(), ['about', 'price']) ? 'current' : '' }}">
                                             <a href="#">Tentang</a>
                                             <ul>
                                                 <li><a href="{{ route('about') }}">Tentang Kita</a></li>
                                                 <li><a href="{{ route('price') }}">Harga</a></li>
-                                                <li><a href="{{ route('movie') }}">Film</a></li>
                                             </ul>
                                         </li>
 
@@ -161,22 +164,25 @@
                                             <a href="#">Layanan</a>
                                             <ul>
                                                 <li><a href="{{ route('services') }}">Semua Layanan</a></li>
-                                                @foreach ($typeServices as $typeService)
+                                                @foreach ($categoryservices as $category)
                                                     <li>
-                                                        <a href="{{ route('detail_service', $typeService->id) }}">
-                                                            {{ $typeService->title }}
+                                                        <a href="{{ route('detail_service', $category->id) }}">
+                                                            {{ $category->category }}
                                                         </a>
                                                     </li>
                                                 @endforeach
                                             </ul>
                                         </li>
-                                        <li class="dropdown"><a href="#">Blog</a>
+
+
+                                        <li
+                                            class="dropdown {{ in_array(Route::currentRouteName(), ['blog', 'detail_blog']) ? 'current' : '' }}">
+                                            <a href="#">Blog</a>
                                             <ul>
-                                                <li><a href="blog.html">Our Blog</a></li>
-                                                <li><a href="not-found.html">Not Found</a></li>
+                                                <li><a href="{{ route('blog') }}">Blog</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="contact.html">Kontak Kami</a></li>
+                                        <li><a href="{{ route('contact') }}">Kontak Kami</a></li>
                                     </ul>
                                 </div>
 
@@ -280,34 +286,68 @@
                         <div class="sidebar-info-contents">
                             <div class="content-inner">
                                 <div class="logo">
-                                    <a href="index.html"><img src="images/logo-2.png" alt="" /></a>
+                                    <a href="{{ route('index') }}"><img src="{{ asset($configuration->path) }}" alt="" /></a>
                                 </div>
                                 <div class="content-box">
-                                    <h5>About Us</h5>
-                                    <p class="text">The argument in favor of using filler text goes something like
-                                        this: If you use real content in the Consulting Process, anytime you reach a
-                                        review point you’ll end up reviewing and negotiating the content itself and not
-                                        the design.</p>
-                                    <a href="contact.html" class="theme-btn btn-style-one"><span
-                                            class="txt">Consultation</span></a>
+                                    <h5>Tentang Kami</h5>
+                                    <div class="container my-5">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="bg-light p-4 rounded">
+                                                    <p class="text-dark" style="line-height: 1.6; font-size: 16px;">
+                                                        {!! $about->description !!}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <a href="{{ route('contact') }}" class="theme-btn btn-style-one"><span
+                                            class="txt">
+                                            Konsultasi</span></a>
                                 </div>
                                 <div class="contact-info">
-                                    <h5>Contact Info</h5>
+                                    <h5>Info Kontak</h5>
                                     <ul class="list-style-one">
                                         <li><span class="icon fa fa-location-arrow"></span>Chicago 12, Melborne City,
                                             USA</li>
-                                        <li><span class="icon fa fa-phone"></span>(111) 111-111-1111</li>
-                                        <li><span class="icon fa fa-envelope"></span>nextbit@gmail.com</li>
-                                        <li><span class="icon fa fa-clock-o"></span>Week Days: 09.00 to 18.00 Sunday:
-                                            Closed</li>
+                                        <li><span class="icon fa fa-phone"></span>{{ $contact->phone_number }}</li>
+                                        <li><span class="icon fa fa-envelope"></span>{{ $contact->email_address }}</li>
+                                        <li><span class="icon fa fa-clock-o"></span>{{ $contact->hours }}</li>
                                     </ul>
                                 </div>
                                 <!-- Social Box -->
                                 <ul class="social-box">
-                                    <li><a href="https://www.facebook.com/" class="fa fa-facebook-f"></a></li>
-                                    <li><a href="https://www.twitter.com/" class="fa fa-twitter"></a></li>
-                                    <li><a href="https://dribbble.com/" class="fa fa-dribbble"></a></li>
-                                    <li><a href="https://www.linkedin.com/" class="fa fa-linkedin"></a></li>
+                                    @if (!empty($contact->facebook))
+                                    <li class="facebook"><a href="{{ $contact->facebook }}" class="fa fa-facebook-f"></a>
+                                    </li>
+                                @else
+
+                                @endif
+                                @if (!empty($contact->email_address))
+                                    <li class="gmail">
+                                        <a href="mailto:{{ $contact->email_address }}">
+                                            <i class="fa fa-envelope"></i> <!-- Or use a Gmail-specific icon -->
+                                        </a>
+                                    </li>
+                                @else
+
+                                @endif
+                                @if (!empty($contact->tiktok))
+                                    <li class="tiktok"><a href="{{ $contact->tiktok }}" target="_blank"
+                                            class="fa fa-tiktok"></a>
+                                    @else
+
+                                @endif
+                                </li>
+                                @if (!empty($contact->phone_number))
+                                    <li class="whatsapp"> <a href="https://wa.me/{{ $contact->phone_number }}"
+                                            target="_blank" class="fa fa-whatsapp"></a>
+                                    </li>
+                                @else
+
+                                @endif
                                 </ul>
                             </div>
                         </div>
@@ -320,15 +360,54 @@
 
         @yield('content')
 
+        <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="auto-container">
+            <div class="inner-container" style="background-image: url(images/background/pattern-11.png)">
+                <div class="row clearfix">
+
+                    <!-- Title Column -->
+                    <div class="title-column col-lg-6 col-md-12 col-sm-12">
+                        <div class="inner-column">
+                            <h3>Mendaftarlah untuk buletin kami</h3>
+                            <div class="text">Ikuti terus berita dan produk terbaru kami..</div>
+                        </div>
+                    </div>
+
+                    <!-- Form Column -->
+                    <div class="form-column col-lg-6 col-md-12 col-sm-12">
+                        <div class="inner-column">
+                            <div class="newsletter-form">
+                                <a href="https://wa.me/{{ $contact->phone_number }}" target="blank">
+                                    <div class="form-group">
+                                        <input type="email" name="email" value="" placeholder="Hubungi Kami ---->>>"
+                                            required="">
+                                        <button type="submit" class="theme-btn btn-style-five"><span
+                                                class="txt">WhatsApp</span></button>
+
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End CTA Section -->
+
         <!-- Main Footer -->
         <footer class="main-footer">
-            <div class="pattern-layer-one" style="background-image: url(images/background/pattern-12.png)"></div>
-            <div class="pattern-layer-two" style="background-image: url(images/background/pattern-13.png)"></div>
+            <div class="pattern-layer-one"
+                style="background-image: url('{{ asset('images/background/pattern-12.png') }}')"></div>
+            <div class="pattern-layer-two"
+                style="background-image: url('{{ asset('images/background/pattern-13.png') }}')"></div>
             <div class="auto-container">
                 <div class="widgets-section">
                     <div class="logo">
                         @if (!empty($configuration->path))
-                            <a href="{{ route('index') }}"><img src="{{ $configuration->path }}"
+                            <a href="{{ route('index') }}"><img src="{{ asset($configuration->path) }}"
                                     alt="" /></a>
                         @else
                             Kosong
@@ -336,52 +415,66 @@
                     </div>
                     <ul class="contact-info-list">
                         <li>
-                            <span class="icon"><img src="images/icons/icon-1.png" alt="" /></span>
-                            @if (!empty($configuration->phone_number))
-                                <a href="https://wa.me/{{ $configuration->phone_number }}">+{{ $configuration->phone_number }}</a><br>
-                            @else
-                                Kosong
-                            @endif
-                        </li>
-                        <li>
-                            <span class="icon"><img src="images/icons/icon-2.png" alt="" /></span>
-                            @if (!empty($configuration->email_address))
+                            <span class="icon"><img src="{{ asset('images/icons/icon-1.png') }}"
+                                    alt="" /></span>
+                            @if (!empty($contact->phone_number))
                                 <a
-                                    href="mailto:{{ $configuration->email_address }}">{{ $configuration->email_address }}</a><br>
+                                    href="https://wa.me/{{ $contact->phone_number }}">+{{ $contact->phone_number }}</a><br>
+                                <a
+                                    href="https://wa.me/{{ $contact->phone_number_2 }}">+{{ $contact->phone_number_2 }}</a>
                             @else
                                 Kosong
                             @endif
                         </li>
                         <li>
-                            <span class="icon"><img src="images/icons/icon-3.png" alt="" /></span>
-                            503 Old Buffalo Street <br> Northwest #205, New York-3087
+                            <span class="icon"><img src="{{ asset('images/icons/icon-2.png') }}"
+                                    alt="" /></span>
+                            @if (!empty($contact->email_address))
+                                <a href="mailto:{{ $contact->email_address }}">{{ $contact->email_address }}</a><br>
+                                <a href="mailto:{{ $contact->email_address_2 }}">{{ $contact->email_address_2 }}</a>
+                            @else
+                                Kosong
+                            @endif
+                        </li>
+                        <li>
+                            <span class="icon"><img src="{{ asset('images/icons/icon-3.png') }}"
+                                    alt="" /></span>
+                            @if (!empty($contact->address))
+                                {{ $contact->address }}
+                            @else
+                                Kosong
+                            @endif
                         </li>
                     </ul>
 
                     <!-- Social Box -->
                     <ul class="social-box">
-                        @if (!empty($configuration->email_address))
-                            <li><a href="{{ $configuration->facebook }}" class="fa fa-facebook-f"></a></li>
-                        @else
-                            Kosong
-                        @endif
-                        @if (!empty($configuration->email_address))
-                            <li><a href="{{ $configuration->linkedin }}" class="fa fa-linkedin"></a></li>
-                        @else
-                            Kosong
-                        @endif
-                        @if (!empty($configuration->email_address))
-                            <li><a href="{{ $configuration->skype }}" class="fa fa-skype"></a></li>
-                        @else
-                            Kosong
-                        @endif
-                        @if (!empty($configuration->email_address))
-                            <li><a href="{{ $configuration->twitter }}" class="fa fa-twitter"></a></li>
-                        @else
-                            Kosong
+                        @if (!empty($contact->facebook))
+                            <li class="facebook">
+                                <a href="{{ $contact->facebook }}" class="fa fa-facebook-f"></a>
+                            </li>
                         @endif
 
+                        @if (!empty($contact->email_address))
+                            <li class="gmail">
+                                <a href="mailto:{{ $contact->email_address }}" class="fa fa-envelope">
+                                </a>
+                            </li>
+                        @endif
+
+                        @if (!empty($contact->tiktok))
+                            <li class="tiktok">
+                                <a href="{{ $contact->tiktok }}" target="_blank" class="fa fa-tiktok"></a>
+                            </li>
+                        @endif
+
+                        @if (!empty($contact->phone_number))
+                            <li class="whatsapp">
+                                <a href="https://wa.me/{{ $contact->phone_number }}" target="_blank" class="fa fa-whatsapp"></a>
+                            </li>
+                        @endif
                     </ul>
+
 
                 </div>
 
@@ -390,15 +483,15 @@
             <div class="footer-bottom">
                 <div class="auto-container">
                     @if (!empty($configuration->footer))
-                    <div class="copyright">{{ $configuration->footer }} <a
-                            href="https://wansolution.co.id/">WAN</a></div>
-                            @else
-                            <div class="copyright"> - <a
+                        <div class="copyright">{{ $configuration->footer }} <a
                                 href="https://wansolution.co.id/">WAN</a></div>
-                            @endif
+                    @else
+                        <div class="copyright"> - <a href="https://wansolution.co.id/">WAN</a></div>
+                    @endif
                 </div>
             </div>
         </footer>
+
         <!-- End Main Footer -->
 
     </div>
@@ -408,10 +501,11 @@
     <div class="search-popup">
         <div class="color-layer"></div>
         <button class="close-search"><span class="fa fa-arrow-up"></span></button>
-        <form method="post" action="blog.html">
+        <form method="GET" action="{{ route('blogs.search') }}">
             <div class="form-group">
-                <input type="search" name="search-field" value="" placeholder="Search Here" required="">
-                <button type="submit"><i class="fa fa-search"></i></button>
+                <input type="search" name="query" value="{{ request('query') }}" placeholder="Search Here ..."
+                    required>
+                <button type="submit"><span class="icon fa fa-search"></span></button>
             </div>
         </form>
     </div>

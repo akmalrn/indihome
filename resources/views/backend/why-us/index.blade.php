@@ -31,8 +31,16 @@
                                     @error('path')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
-                                    <img id="pathPreview" src="#" alt="Image Preview" class="img-thumbnail mt-2" style="display: none; width: 50px;">
-                                    <img src="{{ asset('uploads/whyus/'. $whyus->path) }}" alt="Why Us" class="img-fluid rounded shadow">
+                                    <img id="pathPreview" src="#" alt="Image Preview" class="img-thumbnail mt-2"
+                                        style="display: none; width: 50px;">
+                                    @if (!empty($whyus) && !empty($whyus->path))
+                                        <img src="{{ asset('uploads/whyus/' . $whyus->path) }}" alt="Why Us"
+                                            class="img-fluid rounded shadow">
+                                    @else
+                                        <!-- Tidak ada gambar untuk ditampilkan -->
+                                    @endif
+
+
                                 </div>
                             </div>
 
@@ -50,7 +58,8 @@
                                 <div class="col-md mb-3">
                                     <label for="description" class="form-label">Description</label>
                                     <!-- Use CKEditor on this textarea -->
-                                    <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" rows="4">{{ old('description', $whyus->description ?? '') }}</textarea>
+                                    <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror"
+                                        rows="4">{{ old('description', $whyus->description ?? '') }}</textarea>
                                     <!-- Display validation errors if any -->
                                     @error('description')
                                         <span class="text-danger">{{ $message }}</span>

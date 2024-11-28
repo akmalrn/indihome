@@ -3,10 +3,10 @@
     <!-- Page Title -->
     <section class="page-title" style="background-image: url(images/background/9.jpg)">
         <div class="auto-container">
-            <h2>Services</h2>
+            <h2>Layanan</h2>
             <ul class="bread-crumb clearfix">
-                <li><a href="index.html">Home</a></li>
-                <li>Services</li>
+                <li><a href="{{ route('index') }}">Beranda</a></li>
+                <li>Layanan</li>
             </ul>
         </div>
     </section>
@@ -26,162 +26,20 @@
 
             <div class="four-item-carousel-two owl-carousel owl-theme">
 
-                <!-- Service Block Two -->
-                <div class="service-block-two">
-                    <div class="inner-box">
-                        <div class="color-layer"></div>
-                        <div class="icon-layer-one" style="background-image: url(images/background/pattern-19.png)"></div>
-                        <div class="icon-layer-two" style="background-image: url(images/background/pattern-20.png)"></div>
-                        <div class="icon"><img src="images/icons/service-4.png" alt="" /></div>
-                        <h4><a href="services-detail.html">Broadband</a></h4>
-                        <div class="text">Lorem ipsum dolor sit amet them elit seding doeiumod Donec modern</div>
-                        <a class="learn-more" href="services-detail.html">Learn More</a>
-                    </div>
-                </div>
 
-                <!-- Service Block Two -->
+                @foreach ($categoryservices as $category)
                 <div class="service-block-two">
                     <div class="inner-box">
                         <div class="color-layer"></div>
                         <div class="icon-layer-one" style="background-image: url(images/background/pattern-19.png)"></div>
                         <div class="icon-layer-two" style="background-image: url(images/background/pattern-20.png)"></div>
                         <div class="icon"><img src="images/icons/service-5.png" alt="" /></div>
-                        <h4><a href="services-detail.html">TV & Streaming</a></h4>
-                        <div class="text">Lorem ipsum dolor sit amet them elit seding doeiumod Donec modern</div>
-                        <a class="learn-more" href="services-detail.html">Learn More</a>
+                        <h4>  <a href="{{ route('detail_service', $category->id) }}">    {{ $category->category }}</a></h4>
+                        <div class="text">Layanan Kami Asal {{ $category->category }}</div>
+                        <a class="learn-more" href="{{ route('detail_service', $category->id) }}">Learn More</a>
                     </div>
                 </div>
-
-                <!-- Service Block Two -->
-                <div class="service-block-two">
-                    <div class="inner-box">
-                        <div class="color-layer"></div>
-                        <div class="icon-layer-one" style="background-image: url(images/background/pattern-19.png)"></div>
-                        <div class="icon-layer-two" style="background-image: url(images/background/pattern-20.png)"></div>
-                        <div class="icon"><img src="images/icons/service-6.png" alt="" /></div>
-                        <h4><a href="services-detail.html">Home Phone</a></h4>
-                        <div class="text">Lorem ipsum dolor sit amet them elit seding doeiumod Donec modern</div>
-                        <a class="learn-more" href="services-detail.html">Learn More</a>
-                    </div>
-                </div>
-
-                <!-- Service Block Two -->
-                <div class="service-block-two">
-                    <div class="inner-box">
-                        <div class="color-layer"></div>
-                        <div class="icon-layer-one" style="background-image: url(images/background/pattern-19.png)"></div>
-                        <div class="icon-layer-two" style="background-image: url(images/background/pattern-20.png)"></div>
-                        <div class="icon"><img src="images/icons/service-4.png" alt="" /></div>
-                        <h4><a href="services-detail.html">TV & Streaming</a></h4>
-                        <div class="text">Lorem ipsum dolor sit amet them elit seding doeiumod Donec modern</div>
-                        <a class="learn-more" href="services-detail.html">Learn More</a>
-                    </div>
-                </div>
-
-                <!-- Service Block Two -->
-                <div class="service-block-two">
-                    <div class="inner-box">
-                        <div class="color-layer"></div>
-                        <div class="icon-layer-one" style="background-image: url(images/background/pattern-19.png)"></div>
-                        <div class="icon-layer-two" style="background-image: url(images/background/pattern-20.png)"></div>
-                        <div class="icon"><img src="images/icons/service-4.png" alt="" /></div>
-                        <h4><a href="services-detail.html">Broadband</a></h4>
-                        <div class="text">Lorem ipsum dolor sit amet them elit seding doeiumod Donec modern</div>
-                        <a class="learn-more" href="services-detail.html">Learn More</a>
-                    </div>
-                </div>
-
-                <!-- Service Block Two -->
-                <div class="service-block-two">
-                    <div class="inner-box">
-                        <div class="color-layer"></div>
-                        <div class="icon-layer-one" style="background-image: url(images/background/pattern-19.png)"></div>
-                        <div class="icon-layer-two" style="background-image: url(images/background/pattern-20.png)"></div>
-                        <div class="icon"><img src="images/icons/service-5.png" alt="" /></div>
-                        <h4><a href="services-detail.html">TV & Streaming</a></h4>
-                        <div class="text">Lorem ipsum dolor sit amet them elit seding doeiumod Donec modern</div>
-                        <a class="learn-more" href="services-detail.html">Learn More</a>
-                    </div>
-                </div>
-
-                <!-- Service Block Two -->
-                <div class="service-block-two">
-                    <div class="inner-box">
-                        <div class="color-layer"></div>
-                        <div class="icon-layer-one" style="background-image: url(images/background/pattern-19.png)"></div>
-                        <div class="icon-layer-two" style="background-image: url(images/background/pattern-20.png)"></div>
-                        <div class="icon"><img src="images/icons/service-6.png" alt="" /></div>
-                        <h4><a href="services-detail.html">Home Phone</a></h4>
-                        <div class="text">Lorem ipsum dolor sit amet them elit seding doeiumod Donec modern</div>
-                        <a class="learn-more" href="services-detail.html">Learn More</a>
-                    </div>
-                </div>
-
-                <!-- Service Block Two -->
-                <div class="service-block-two">
-                    <div class="inner-box">
-                        <div class="color-layer"></div>
-                        <div class="icon-layer-one" style="background-image: url(images/background/pattern-19.png)"></div>
-                        <div class="icon-layer-two" style="background-image: url(images/background/pattern-20.png)"></div>
-                        <div class="icon"><img src="images/icons/service-4.png" alt="" /></div>
-                        <h4><a href="services-detail.html">TV & Streaming</a></h4>
-                        <div class="text">Lorem ipsum dolor sit amet them elit seding doeiumod Donec modern</div>
-                        <a class="learn-more" href="services-detail.html">Learn More</a>
-                    </div>
-                </div>
-
-                <!-- Service Block Two -->
-                <div class="service-block-two">
-                    <div class="inner-box">
-                        <div class="color-layer"></div>
-                        <div class="icon-layer-one" style="background-image: url(images/background/pattern-19.png)"></div>
-                        <div class="icon-layer-two" style="background-image: url(images/background/pattern-20.png)"></div>
-                        <div class="icon"><img src="images/icons/service-4.png" alt="" /></div>
-                        <h4><a href="services-detail.html">Broadband</a></h4>
-                        <div class="text">Lorem ipsum dolor sit amet them elit seding doeiumod Donec modern</div>
-                        <a class="learn-more" href="services-detail.html">Learn More</a>
-                    </div>
-                </div>
-
-                <!-- Service Block Two -->
-                <div class="service-block-two">
-                    <div class="inner-box">
-                        <div class="color-layer"></div>
-                        <div class="icon-layer-one" style="background-image: url(images/background/pattern-19.png)"></div>
-                        <div class="icon-layer-two" style="background-image: url(images/background/pattern-20.png)"></div>
-                        <div class="icon"><img src="images/icons/service-5.png" alt="" /></div>
-                        <h4><a href="services-detail.html">TV & Streaming</a></h4>
-                        <div class="text">Lorem ipsum dolor sit amet them elit seding doeiumod Donec modern</div>
-                        <a class="learn-more" href="services-detail.html">Learn More</a>
-                    </div>
-                </div>
-
-                <!-- Service Block Two -->
-                <div class="service-block-two">
-                    <div class="inner-box">
-                        <div class="color-layer"></div>
-                        <div class="icon-layer-one" style="background-image: url(images/background/pattern-19.png)"></div>
-                        <div class="icon-layer-two" style="background-image: url(images/background/pattern-20.png)"></div>
-                        <div class="icon"><img src="images/icons/service-6.png" alt="" /></div>
-                        <h4><a href="services-detail.html">Home Phone</a></h4>
-                        <div class="text">Lorem ipsum dolor sit amet them elit seding doeiumod Donec modern</div>
-                        <a class="learn-more" href="services-detail.html">Learn More</a>
-                    </div>
-                </div>
-
-                <!-- Service Block Two -->
-                <div class="service-block-two">
-                    <div class="inner-box">
-                        <div class="color-layer"></div>
-                        <div class="icon-layer-one" style="background-image: url(images/background/pattern-19.png)"></div>
-                        <div class="icon-layer-two" style="background-image: url(images/background/pattern-20.png)"></div>
-                        <div class="icon"><img src="images/icons/service-4.png" alt="" /></div>
-                        <h4><a href="services-detail.html">TV & Streaming</a></h4>
-                        <div class="text">Lorem ipsum dolor sit amet them elit seding doeiumod Donec modern</div>
-                        <a class="learn-more" href="services-detail.html">Learn More</a>
-                    </div>
-                </div>
-
+                @endforeach
             </div>
 
         </div>
@@ -189,15 +47,13 @@
     <!-- End Services Section Two -->
 
     <!-- Internet Section -->
-    <section class="internet-section" style="background-image: url(images/background/1.jpg)">
+    <section class="internet-section" style="background-image: url({{ asset($configuration->path_1) }})">
         <div class="auto-container">
             <div class="clearfix">
                 <div class="content-column">
-                    <h2>Save money by bundling your internet service with TV service.</h2>
-                    <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eius to mod tempor
-                        incididunt ut labore et dolore magna aliqua. Ut enims ad minim veniam. Aenean massa. Cum sociis
-                        natoque penatibus et magnis dis partu rient to montes.Aene an massa.</div>
-                    <div class="price">$25/ per month</div>
+                    <h2>{{ $configuration->overview_1 }}</h2>
+                    <div class="text">{{ $configuration->description_1 }}</div>
+                    <div class="price">{{ $configuration->price_1 }}</div>
                     <a href="about.html" class="theme-btn btn-style-four"><span class="txt">Read More <i
                                 class="lnr lnr-arrow-right"></i></span></a>
                 </div>
@@ -214,7 +70,7 @@
                 <!-- Title Column -->
                 <div class="title-column col-lg-6 col-md-12 col-sm-12">
                     <div class="inner-column">
-                        <h3>Let's find deals and services available in your area</h3>
+                        <h3>Mari temukan penawaran dan layanan yang tersedia di wilayah Anda</h3>
                     </div>
                 </div>
 
@@ -240,7 +96,7 @@
     <!-- End Appointment Section -->
 
     <!-- Faq Section -->
-    <section class="faq-section" style="background-image: url(images/background/4.jpg)">
+    {{-- <section class="faq-section" style="background-image: url(images/background/4.jpg)">
         <div class="auto-container">
             <div class="row clearfix">
 
@@ -336,147 +192,8 @@
 
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- End Faq Section -->
-
-    <!-- Pricing Section Two / Style Three -->
-    <section class="pricing-section-two style-three" style="background-image: url(images/background/pattern-7.png)">
-        <div class="auto-container">
-            <!-- Sec Title -->
-            <div class="sec-title centered">
-                <div class="separator"></div>
-                <h2>Discover Our Best Plans</h2>
-            </div>
-            <!-- End Sec Title -->
-
-            <!-- Price Block Two -->
-            <div class="price-block-two">
-                <div class="inner-box">
-                    <!-- Title Box -->
-                    <div class="title-box">
-                        <div class="title">TV + Internet</div>
-                        <h4><a href="price.html">Easy Surfing</a></h4>
-                        <div class="text">Choose from a range of fast, reliable Internet speeds to fit your needs</div>
-                    </div>
-                    <!-- End Title Box -->
-
-                    <!-- Middle Content -->
-                    <div class="middle-content">
-                        <div class="middle-inner">
-                            <ul class="icon-list">
-                                <li><span class="icon"><img src="images/icons/service-1.svg" alt="" /></span>
-                                </li>
-                                <li><span class="icon"><img src="images/icons/service-2.svg" alt="" /></span>
-                                </li>
-                            </ul>
-                            <ul class="price-list">
-                                <li>Internet with a 100Mbps</li>
-                                <li>Connect multiple users</li>
-                                <li>WiFi router & prevention</li>
-                                <li>Unlimited devices</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- End Middle Content -->
-
-                    <!-- Price Box -->
-                    <div class="price-box">
-                        <div class="price">$55.00<span>Per Month</span></div>
-                        <a href="about.html" class="theme-btn btn-style-four"><span class="txt">Get Started</span></a>
-                    </div>
-                    <!-- End Price Box -->
-
-                </div>
-            </div>
-            <!-- End Price Block Two -->
-
-            <!-- Price Block Two -->
-            <div class="price-block-two active">
-                <div class="inner-box">
-                    <!-- Title Box -->
-                    <div class="title-box">
-                        <div class="title">Internet + Phone</div>
-                        <h4><a href="price.html">Home Basic</a></h4>
-                        <div class="text">Choose from a range of fast, reliable Internet speeds to fit your needs</div>
-                    </div>
-                    <!-- End Title Box -->
-
-                    <!-- Middle Content -->
-                    <div class="middle-content">
-                        <div class="middle-inner">
-                            <ul class="icon-list">
-                                <li><span class="icon"><img src="images/icons/service-1.svg" alt="" /></span>
-                                </li>
-                                <li><span class="icon"><img src="images/icons/service-3.svg" alt="" /></span>
-                                </li>
-                            </ul>
-                            <ul class="price-list">
-                                <li>Internet with a 100Mbps</li>
-                                <li>Connect multiple users</li>
-                                <li>WiFi router & prevention</li>
-                                <li>Unlimited devices</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- End Middle Content -->
-
-                    <!-- Price Box -->
-                    <div class="price-box">
-                        <div class="price">$75.00<span>Per Month</span></div>
-                        <a href="about.html" class="theme-btn btn-style-four"><span class="txt">Get Started</span></a>
-                    </div>
-                    <!-- End Price Box -->
-
-                </div>
-            </div>
-            <!-- End Price Block Two -->
-
-            <!-- Price Block Two -->
-            <div class="price-block-two">
-                <div class="inner-box">
-                    <!-- Title Box -->
-                    <div class="title-box">
-                        <div class="title">TV + Internet + Phone</div>
-                        <h4><a href="price.html">Premium Fast</a></h4>
-                        <div class="text">Choose from a range of fast, reliable Internet speeds to fit your needs</div>
-                    </div>
-                    <!-- End Title Box -->
-
-                    <!-- Middle Content -->
-                    <div class="middle-content">
-                        <div class="middle-inner">
-                            <ul class="icon-list">
-                                <li><span class="icon"><img src="images/icons/service-1.svg" alt="" /></span>
-                                </li>
-                                <li><span class="icon"><img src="images/icons/service-2.svg" alt="" /></span>
-                                </li>
-                                <li><span class="icon"><img src="images/icons/service-3.svg" alt="" /></span>
-                                </li>
-                            </ul>
-                            <ul class="price-list">
-                                <li>Internet with a 100Mbps</li>
-                                <li>Connect multiple users</li>
-                                <li>WiFi router & prevention</li>
-                                <li>Unlimited devices</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- End Middle Content -->
-
-                    <!-- Price Box -->
-                    <div class="price-box">
-                        <div class="price">$55.00<span>Per Month</span></div>
-                        <a href="about.html" class="theme-btn btn-style-four"><span class="txt">Get Started</span></a>
-                    </div>
-                    <!-- End Price Box -->
-
-                </div>
-            </div>
-            <!-- End Price Block Two -->
-
-        </div>
-    </section>
-    <!-- End Pricing Section Two / Style Three -->
 
     <!-- CTA Section -->
     <section class="cta-section">
@@ -487,8 +204,8 @@
                     <!-- Title Column -->
                     <div class="title-column col-lg-6 col-md-12 col-sm-12">
                         <div class="inner-column">
-                            <h3>Sign up for our newsletter</h3>
-                            <div class="text">Stay up to update with our latest news and products.</div>
+                            <h3>Mendaftarlah untuk buletin kami</h3>
+                            <div class="text">Ikuti terus berita dan produk terbaru kami.</div>
                         </div>
                     </div>
 
