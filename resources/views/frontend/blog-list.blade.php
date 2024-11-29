@@ -40,7 +40,7 @@
                                         <h4><a href="{{ route('blog-detail', $blog->id) }}">{{ $blog->title }}</a></h4>
                                         <div class="text">{{ $blog->overview }}</div>
                                         <a href="{{ route('blog-detail', $blog->id) }}" class="theme-btn btn-style-four">
-                                            <span class="txt">Read More <i class="lnr lnr-arrow-right"></i></span>
+                                            <span class="txt">Baca Selengkapnya <i class="lnr lnr-arrow-right"></i></span>
                                         </a>
                                     </div>
                                 </div>
@@ -103,7 +103,7 @@
 								</div>
                                 @foreach ($blogs as $blog)
                                 <article class="post">
-									<figure class="post-thumb"><img src="{{ asset('uploads/blogs/'. $blog->path) }}" alt=""><a href="news-detail.html" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
+									<figure class="post-thumb"><img src="{{ asset('uploads/blogs/'. $blog->path) }}" alt=""><a href="{{ route('blog-detail', $blog->id) }}" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
 									<div class="text"><a href="{{ route('blog-detail', $blog->id) }}">{{ $blog->title }}</a></div>
 									<div class="post-info">{{ $blog->created_at->format('d-m-Y') }}
                                         <span></span></div>

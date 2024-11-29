@@ -60,17 +60,16 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group form-group-default">
-                                            <label for="type_id">Category</label>
-                                            <select id="type_id" name="type_id"
-                                                class="form-control @error('type_id') is-invalid @enderror" required>
-                                                <option value="">Select Category</option>
+                                            <label for="type_id">Type</label>
+                                            <select id="type_id" name="type_id" class="form-control @error('type_id') is-invalid @enderror" required>
+                                                <option value="">Select Type</option>
                                                 @foreach ($typeservices as $type)
-                                                    <option value="{{ $category->id }}"
-                                                        {{ $type->id == $service->type_id ? 'selected' : '' }}>
+                                                    <option value="{{ $type->id }}" {{ old('type_id', $service->type_id) == $type->id ? 'selected' : '' }}>
                                                         {{ $type->title }}
                                                     </option>
                                                 @endforeach
                                             </select>
+
                                             @error('type_id')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror

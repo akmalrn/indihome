@@ -15,4 +15,9 @@ class CategoryService extends Model
         'category',
         'path',
     ];
+
+    public function services()
+    {
+        return $this->hasMany(Service::class);
+    }
 }

@@ -1,11 +1,7 @@
 @extends('frontend.layouts')
-
-<head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
 @section('content')
     <!-- Page Title -->
-    <section class="page-title" style="background-image: url(images/background/10.jpg)">
+    <section class="page-title">
         <div class="auto-container">
             <h2>Kontak Kami</h2>
             <ul class="bread-crumb clearfix">
@@ -93,7 +89,7 @@
                                 @endif
                                 @if (!empty($contact->tiktok))
                                     <li class="tiktok"><a href="{{ $contact->tiktok }}" target="_blank"
-                                            class="fa fa-tiktok"></a>
+                                            class="fa fa-tiktok">T</a>
                                     @else
 
                                 @endif

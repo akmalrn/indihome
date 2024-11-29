@@ -1,4 +1,5 @@
 @extends('backend.layout')
+
 @section('content')
     <div class="container">
         <div class="page-inner">
@@ -30,7 +31,18 @@
                         <div class="card-header">
                             <div class="d-flex align-items-center justify-content-between">
                                 <h4 class="card-title">Add Row</h4>
-                                <div>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <form action="{{ route('services.index') }}" method="GET">
+                                        <select name="category_id" class="form-control" onchange="this.form.submit()">
+                                            <option value="">-- Select Category --</option>
+                                            @foreach ($categoryservices as $category)
+                                                <option value="{{ $category->id }}"
+                                                    {{ request()->category_id == $category->id ? 'selected' : '' }}>
+                                                    {{ $category->category }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </form>
                                     <button class="btn btn-primary btn-round"
                                         onclick="window.location.href='{{ route('type-services.index') }}'">
                                         <i class="fa fa-plus"></i> Type Service
@@ -49,7 +61,6 @@
                                     <thead>
                                         <tr>
                                             <th>Type</th>
-                                            <th>Category</th>
                                             <th>Title</th>
                                             <th>Overview</th>
                                             <th>Description</th>
@@ -59,7 +70,6 @@
                                     <tfoot>
                                         <tr>
                                             <th>Jenis</th>
-                                            <th>Kategori</th>
                                             <th>Judul</th>
                                             <th>Ringkasan</th>
                                             <th>Deskripsi</th>
@@ -69,10 +79,9 @@
                                         @foreach ($services as $service)
                                             <tr>
                                                 <td>{{ $service->type->title }}</td>
-                                                <td>{{ $service->category->category }}</td>
                                                 <td>{{ $service->title }}</td>
                                                 <td>{{ $service->overview }}</td>
-                                                <td>{!! Str::limit($service->description, 100) !!}</td>
+                                                <td>{!! Str::limit($service->description, 50) !!}</td>
                                                 <td>
                                                     <div class="form-button-action">
                                                         <form action="{{ route('services.edit', $service->id) }}"

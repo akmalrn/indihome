@@ -22,7 +22,9 @@
                     <div class="images-column col-lg-7 col-md-12 col-sm-12">
                         <div class="inner-column">
                             <div class="image wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+                                @if ($about && $about->path)
                                 <img src="{{ asset($about->path) }}" alt="" />
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -33,12 +35,18 @@
                             <!-- Sec Title -->
                             <div class="sec-title">
                                 <div class="separator"></div>
+                                @if ($about && $about->title)
                                 <h2>{{ $about->title }}</h2>
+                                @endif
+                                @if ($about && $about->overview)
                                 <div class="text">{{ $about->overview }}</div>
+                                @endif
                             </div>
                             <!-- Network List -->
                             <ul class="network-list">
+                                @if ($about && $about->description)
                                 {!! $about->description !!}
+                                @endif
                             </ul>
 
                         </div>
@@ -58,8 +66,7 @@
                 <!-- Title Column -->
                 <div class="title-column col-lg-6 col-md-12 col-sm-12">
                     <div class="inner-column">
-                        <h3>Mari temukan penawaran dan layanan yang tersedia di wilayah Anda
-                        </h3>
+                        <h3>Hubungi Kami Untuk Mendapatkan Layanan</h3>
                     </div>
                 </div>
 
@@ -67,14 +74,19 @@
                 <div class="form-column col-lg-6 col-md-12 col-sm-12">
                     <div class="inner-column">
                         <div class="appointment-form">
-                            <form method="post" action="contact.html">
-                                <div class="form-group">
-                                    <input type="email" name="email" value=""
-                                        placeholder="Enter street address & apartment" required="">
-                                    <button type="submit" class="theme-btn btn-style-two"><span class="txt">Check
-                                            Availability <i class="lnr lnr-arrow-right"></i></span></button>
-                                </div>
-                            </form>
+                            @if (!empty($contact->phone_number))
+                                <a href="https://wa.me/{{ $contact->phone_number }}" target="blank">
+                                @else
+                                    -
+                            @endif
+                            <div class="form-group">
+                                <input type="email" name="email" value="" placeholder="Disini ---->>>"
+                                    required="">
+                                <button type="submit" class="theme-btn btn-style-five"><span
+                                        class="txt">WhatsApp</span></button>
+
+                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -94,7 +106,7 @@
                         Anda Memilih kami</h2>
                 </div>
                 <div class="pull-right">
-                    <a href="services.html" class="theme-btn btn-style-four"><span class="txt">View Services <i
+                    <a href="{{ route('services') }}" class="theme-btn btn-style-four"><span class="txt">Semua Layanan <i
                                 class="lnr lnr-arrow-right"></i></span></a>
                 </div>
             </div>

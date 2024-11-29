@@ -13,24 +13,28 @@ class LogVisit
 {
     public function handle(Request $request, Closure $next): Response
     {
-        $ipAddress = $request->ip();
-        $timezone = 'Asia/Jakarta';
-        $visitedAt = now()->setTimezone($timezone);
+        if (auth()->guest()) {
+            $ipAddress = $request->ip();
+            $timezone = 'Asia/Jakarta';
+            $visitedAt = now()->setTimezone($timezone);
 
-        $response = Http::get("http://ip-api.com/json/{$ipAddress}");
-        $data = $response->json();
+            $response = Http::timeout(30)  // Timeout after 30 seconds
+            ->get("http://ip-api.com/json/{$ipAddress}");
 
-        Log::info('IP API Response', $data);
+            $data = $response->json();
 
-        $country = isset($data['status']) && $data['status'] === 'success'
-        ? "{$data['city']}, {$data['regionName']}"
-        : 'Unknown Location';
+            Log::info('IP API Response', $data);
 
-        Visit::create([
-            'ip_address' => $ipAddress,
-            'country' => $country,
-            'visited_at' => $visitedAt,
-        ]);
+            $country = isset($data['status']) && $data['status'] === 'success'
+                ? "{$data['city']}, {$data['regionName']}"
+                : 'Unknown Location';
+
+            Visit::create([
+                'ip_address' => $ipAddress,
+                'country' => $country,
+                'visited_at' => $visitedAt,
+            ]);
+        }
 
         return $next($request);
     }

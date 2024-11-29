@@ -1,11 +1,11 @@
 @extends('frontend.layouts')
 @section('content')
     <!-- Page Title -->
-    <section class="page-title" style="background-image: url(images/background/8.jpg)">
+    <section class="page-title" style="background-image: url({{ asset('images/background/8.jpg') }})">
         <div class="auto-container">
-            <h2>Paket kami</h2>
+            <h2>Paket Kami</h2>
             <ul class="bread-crumb clearfix">
-                <li><a href="{{ route('index') }}">BEranda</a></li>
+                <li><a href="{{ route('index') }}">Beranda</a></li>
                 <li>Paket</li>
             </ul>
         </div>
@@ -23,13 +23,13 @@
             <!-- End Sec Title -->
 
             @if ($price && $price->isNotEmpty())
-                @foreach ($price as $price)
+                @foreach ($price as $item)
                     <div class="price-block-two">
                         <div class="inner-box">
                             <!-- Title Box -->
                             <div class="title-box">
                                 <div class="title"></div>
-                                <h4><a href="price.html">{{ $price->title }}</a></h4>
+                                <h4><a href="https://wa.me/{{ $contact->phone_number }}" target="blank">{{ $item->title }}</a></h4>
                                 <div class="text">Choose from a range of fast, reliable Internet speeds to fit your needs
                                 </div>
                             </div>
@@ -39,13 +39,13 @@
                             <div class="middle-content">
                                 <div class="middle-inner">
                                     <ul class="icon-list">
-                                        <li><span class="icon"><img src="images/icons/service-1.svg"
+                                        <li><span class="icon"><img src="{{ asset('images/icons/service-1.svg') }}"
                                                     alt="" /></span></li>
-                                        <li><span class="icon"><img src="images/icons/service-2.svg"
+                                        <li><span class="icon"><img src="{{ asset('images/icons/service-2.svg') }}"
                                                     alt="" /></span></li>
                                     </ul>
                                     <ul class="price-list">
-                                        {!! $price->description !!}
+                                        {!! $item->description !!}
                                     </ul>
                                 </div>
                             </div>
@@ -53,9 +53,9 @@
 
                             <!-- Price Box -->
                             <div class="price-box">
-                                <div class="price">{{ $price->overview }}<span></span></div>
-                                <a href="about.html" class="theme-btn btn-style-four"><span class="txt">Get
-                                        Started</span></a>
+                                <div class="price">{{ $item->overview }}<span></span></div>
+                                <a href="{{ route('about') }}" class="theme-btn btn-style-four"><span class="txt">Memulai
+                                </span></a>
                             </div>
                             <!-- End Price Box -->
 
@@ -63,9 +63,8 @@
                     </div>
                 @endforeach
             @else
-                <p style="text-align: center">harga Kosong </p>
+                <p style="text-align: center">Harga Kosong</p>
             @endif
-
         </div>
     </section>
     <!-- End Pricing Section Two -->
@@ -74,15 +73,10 @@
     <section class="internet-section-three" style="background-image: url('{{ asset($configuration->path_1) }}');">
         <div class="auto-container">
             <div class="row clearfix">
-
                 <!-- Image Column -->
                 <div class="image-column col-lg-6 col-md-12 col-sm-12">
                     <div class="inner-column">
-                        {{-- <div class="transparent-image">
-                            <img src="images/resource/internet-video-transparent.png" alt="" />
-                            <a href="https://www.youtube.com/watch?v=kxPCFljwJws" class="lightbox-image overlay-box"><span
-                                    class="flaticon-play-arrow"><i class="ripple"></i></span></a>
-                        </div> --}}
+                        <!-- Placeholder for future video/image -->
                     </div>
                 </div>
 
@@ -95,7 +89,7 @@
                         </div>
                         <div class="text">{{ $configuration->description_1 }}</div>
                         <div class="price">{{ $configuration->price_1 }}</div>
-                        <a href="about.html" class="theme-btn btn-style-two"><span class="txt">Read More <i
+                        <a href="{{ route('about') }}" class="theme-btn btn-style-two"><span class="txt">Read More <i
                                     class="lnr lnr-arrow-right"></i></span></a>
                     </div>
                 </div>
@@ -115,27 +109,25 @@
             </div>
             <!-- End Sec Title -->
             <div class="row clearfix">
-
                 @if ($price && $price->isNotEmpty())
-                    @foreach ($price as $price)
+                    @foreach ($price as $item)
                         <div class="price-block col-xl-3 col-lg-4 col-md-6 col-sm-12">
                             <div class="inner-box wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
-                                <div class="upper-box" style="background-image: url(images/background/pattern-4.png)">
+                                <div class="upper-box" style="background-image: url({{ asset('images/background/pattern-4.png') }})">
                                     <ul class="icon-list">
-                                        <li><span class="icon"><img src="images/icons/service-1.svg"
-                                                    alt="" /></span>
-                                        </li>
+                                        <li><span class="icon"><img src="{{ asset('images/icons/service-1.svg') }}"
+                                                    alt="" /></span></li>
                                     </ul>
-                                    <h4>{{ $price->title }} <span>{{ $price->overview }}</span></h4>
+                                    <h4>{{ $item->title }} <span>{{ $item->overview }}</span></h4>
                                 </div>
                                 <div class="lower-box">
                                     <ul class="price-list">
-                                        {!! $price->description !!}
+                                        {!! $item->description !!}
                                     </ul>
                                     <div class="button-box">
-                                        <a href="https://wa.me/{{ $configuration->phone_number }}" target="blank"
-                                            class="theme-btn btn-style-four"><span class="txt">Get
-                                                started</span></a>
+                                        <a href="https://wa.me/{{ $configuration->phone_number }}" target="_blank"
+                                            class="theme-btn btn-style-four"><span class="txt">Memulai
+                                            </span></a>
                                     </div>
                                 </div>
                             </div>
@@ -148,40 +140,4 @@
         </div>
     </section>
     <!-- End Pricing Section -->
-
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="auto-container">
-            <div class="inner-container" style="background-image: url(images/background/pattern-11.png)">
-                <div class="row clearfix">
-
-                    <!-- Title Column -->
-                    <div class="title-column col-lg-6 col-md-12 col-sm-12">
-                        <div class="inner-column">
-                            <h3>Sign up for our newsletter</h3>
-                            <div class="text">Stay up to update with our latest news and products.</div>
-                        </div>
-                    </div>
-
-                    <!-- Form Column -->
-                    <div class="form-column col-lg-6 col-md-12 col-sm-12">
-                        <div class="inner-column">
-                            <div class="newsletter-form">
-                                <form method="post" action="contact.html">
-                                    <div class="form-group">
-                                        <input type="email" name="email" value="" placeholder="Your Email Address"
-                                            required="">
-                                        <button type="submit" class="theme-btn btn-style-five"><span
-                                                class="txt">Subscribe</span></button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End CTA Section -->
 @endsection

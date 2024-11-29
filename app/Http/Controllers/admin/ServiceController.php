@@ -11,10 +11,14 @@ use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $categoryservices = CategoryService::all();
-        $services = Service::with('category')->get();
+        if ($request->has('category_id') && $request->category_id != '') {
+            $services = Service::where('category_id', $request->category_id)->get();
+        } else {
+            $services = Service::take(11)->get();
+        }
         return view('backend.service.index', compact('categoryservices', 'services'));
     }
 

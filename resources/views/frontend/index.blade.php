@@ -7,7 +7,7 @@
 
             @if ($sliders && $sliders->isNotEmpty())
                 @foreach ($sliders as $slider)
-                    <div class="slide" style="background-image: url('{{ asset('uploads/sliders/' . $slider->path) }}')">
+                    <div class="slide" style="background-image: url('{{ asset('uploads/sliders/' . $slider->path) }}'); width: 100%; height: 500px;">
                         <div class="pattern-layer" style="background-image: url(images/main-slider/pattern-layer.png)"></div>
                         <div class="color-layer-one"></div>
                         <div class="color-layer-two"></div>
@@ -18,13 +18,13 @@
                             <div class="content-boxed">
                                 <div class="inner-box">
                                     <div class="title">{{ $slider->title }}</div>
-                                    <h1>{{ $slider->overview }}</h1>
+                                    <h2 style="color: white">{{ $slider->overview }}</h2>
                                     <div class="btns-box">
                                         <a href="{{ route('about') }}" class="theme-btn btn-style-two"><span
-                                                class="txt">Read More
+                                                class="txt">Baca Selengkapnya
                                                 <i class="lnr lnr-arrow-right"></i></span></a>
                                         <a href="{{ route('contact') }}" class="theme-btn btn-style-three"><span
-                                                class="txt">Contact Now <i class="lnr lnr-arrow-right"></i></span></a>
+                                                class="txt">Kontak Sekarang <i class="lnr lnr-arrow-right"></i></span></a>
                                     </div>
                                 </div>
                             </div>
@@ -33,30 +33,30 @@
                     </div>
                 @endforeach
             @else
-            <div class="slide">
-                <div class="pattern-layer" style="background-image: url(images/main-slider/pattern-layer.png)"></div>
-                <div class="color-layer-one"></div>
-                <div class="color-layer-two"></div>
-                <div class="color-layer-three"></div>
-                <div class="auto-container">
+                <div class="slide">
+                    <div class="pattern-layer" style="background-image: url(images/main-slider/pattern-layer.png)"></div>
+                    <div class="color-layer-one"></div>
+                    <div class="color-layer-two"></div>
+                    <div class="color-layer-three"></div>
+                    <div class="auto-container">
 
-                    <!-- Content Boxed -->
-                    <div class="content-boxed">
-                        <div class="inner-box">
-                            <div class="title">Kosong</div>
-                            <h1>Kosong</h1>
-                            <div class="btns-box">
-                                <a href="{{ route('about') }}" class="theme-btn btn-style-two"><span
-                                        class="txt">Read More
-                                        <i class="lnr lnr-arrow-right"></i></span></a>
-                                <a href="{{ route('contact') }}" class="theme-btn btn-style-three"><span
-                                        class="txt">Contact Now <i class="lnr lnr-arrow-right"></i></span></a>
+                        <!-- Content Boxed -->
+                        <div class="content-boxed">
+                            <div class="inner-box">
+                                <div class="title">Kosong</div>
+                                <h1>Kosong</h1>
+                                <div class="btns-box">
+                                    <a href="{{ route('about') }}" class="theme-btn btn-style-two"><span class="txt">Read
+                                            More
+                                            <i class="lnr lnr-arrow-right"></i></span></a>
+                                    <a href="{{ route('contact') }}" class="theme-btn btn-style-three"><span
+                                            class="txt">Contact Now <i class="lnr lnr-arrow-right"></i></span></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
-            </div>
             @endif
         </div>
 
@@ -79,14 +79,18 @@
                 <div class="form-column col-lg-6 col-md-12 col-sm-12">
                     <div class="inner-column">
                         <div class="appointment-form">
-                            <a href="https://wa.me/{{ $contact->phone_number }}" target="blank">
-                                <div class="form-group">
-                                    <input type="email" name="email" value="" placeholder="Disini ---->>>"
-                                        required="">
-                                    <button type="submit" class="theme-btn btn-style-five"><span
-                                            class="txt">WhatsApp</span></button>
+                            @if (!empty($contact->phone_number))
+                                <a href="https://wa.me/{{ $contact->phone_number }}" target="blank">
+                                @else
+                                    -
+                            @endif
+                            <div class="form-group">
+                                <input type="email" name="email" value="" placeholder="Disini ---->>>"
+                                    required="">
+                                <button type="submit" class="theme-btn btn-style-five"><span
+                                        class="txt">WhatsApp</span></button>
 
-                                </div>
+                            </div>
                             </a>
                         </div>
                     </div>
@@ -171,7 +175,7 @@
                                     Deskripsi Kosong
                                 @endif
                             </div>
-                            <a href="{{ route('about') }}" class="theme-btn btn-style-four"><span class="txt">Read More
+                            <a href="{{ route('about') }}" class="theme-btn btn-style-four"><span class="txt">Baca Selengkapnya
                                     <i class="lnr lnr-arrow-right"></i></span></a>
                         </div>
                     </div>
@@ -295,7 +299,7 @@
 
     <!-- Internet Section -->
     <section class="internet-section"
-        style="background-image: url({{ !empty($configuration->path_1) ? asset($configuration->path_1) : asset('default-image.jpg') }})">
+    style="background-image: url( images/background/11.PNG )">
         <div class="auto-container">
             <div class="clearfix">
                 <div class="content-column">
@@ -314,7 +318,7 @@
                     @else
                         -
                     @endif
-                    <a href="{{ route('about') }}" class="theme-btn btn-style-four"><span class="txt">Read More <i
+                    <a href="{{ route('about') }}" class="theme-btn btn-style-four"><span class="txt">Baca Selengkapnya <i
                                 class="lnr lnr-arrow-right"></i></span></a>
                 </div>
             </div>
@@ -337,26 +341,27 @@
             <div class="testimonial-carousel owl-carousel owl-theme">
 
                 @foreach ($testimonialClients as $testimonial)
-                <div class="testimonial-block">
-                    <div class="inner-box">
-                        <div class="upper-box">
-                            <div class="text">{!! $testimonial->description !!}</div>
-                        </div>
-                        <div class="lower-box">
-                            <div class="color-layer"></div>
-                            <div class="pattern-layer" style="background-image: url(images/background/pattern-8.png)">
+                    <div class="testimonial-block">
+                        <div class="inner-box">
+                            <div class="upper-box">
+                                <div class="text">{!! $testimonial->description !!}</div>
                             </div>
-                            <div class="author-image-outer">
-                                <span class="quote-icon fa fa-quote-left"></span>
-                                <div class="author-image">
-                                    <img src="{{ asset('uploads/testimonialClients/'. $testimonial->path) }}" alt="" />
+                            <div class="lower-box">
+                                <div class="color-layer"></div>
+                                <div class="pattern-layer" style="background-image: url(images/background/pattern-8.png)">
                                 </div>
+                                <div class="author-image-outer">
+                                    <span class="quote-icon fa fa-quote-left"></span>
+                                    <div class="author-image">
+                                        <img src="{{ asset('uploads/testimonialClients/' . $testimonial->path) }}"
+                                            alt="" />
+                                    </div>
+                                </div>
+                                <div class="author-name">{{ $testimonial->name }}</div>
+                                <div class="designation">{{ $testimonial->position }}</div>
                             </div>
-                            <div class="author-name">{{ $testimonial->name }}</div>
-                            <div class="designation">{{ $testimonial->position }}</div>
                         </div>
                     </div>
-                </div>
                 @endforeach
 
             </div>

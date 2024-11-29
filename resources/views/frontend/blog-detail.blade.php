@@ -1,7 +1,7 @@
 @extends('frontend.layouts')
 @section('content')
     <!-- Page Title -->
-    <section class="page-title">
+    <section class="page-title" style="background-image: url('{{ asset('images/background/10.jpg') }}')">
         <div class="auto-container">
             <h2>Blog </h2>
             <ul class="bread-crumb clearfix">
@@ -102,30 +102,28 @@
 
                         <!-- Search -->
                         <div class="sidebar-widget search-box">
-                            <form method="post" action="contact.html">
+							<form method="GET" action="{{ route('blogs.search') }}">
                                 <div class="form-group">
-                                    <input type="search" name="search-field" value="" placeholder="Search Here ..."
-                                        required>
+                                    <input type="search" name="query" value="{{ request('query') }}" placeholder="Search Here ..." required>
                                     <button type="submit"><span class="icon fa fa-search"></span></button>
                                 </div>
                             </form>
-                        </div>
+						</div>
 
                         <!-- Services Widget -->
                         <div class="sidebar-widget services-widget">
-                            <div class="widget-content">
-                                <div class="sidebar-title">
-                                    <h5>Our Services</h5>
-                                </div>
-                                <ul class="service-list">
-                                    <li><a href="#">Broadband</a></li>
-                                    <li><a href="#">TV & Streaming</a></li>
-                                    <li><a href="#">Satellite TV</a></li>
-                                    <li><a href="#">Home Phone</a></li>
-                                    <li><a href="#">Home Security</a></li>
-                                </ul>
-                            </div>
-                        </div>
+							<div class="widget-content">
+								<div class="sidebar-title">
+									<h5>Kategory</h5>
+								</div>
+								<ul class="service-list">
+                                    @foreach ($categoryBlogs as $category)
+                                    <li><a href="">{{ $category->category }}</a></li>
+                                    @endforeach
+
+								</ul>
+							</div>
+						</div>
 
                         <!-- Popular Posts -->
                         <div class="sidebar-widget popular-posts">
@@ -135,7 +133,7 @@
                                 </div>
                                 @foreach ($blogs as $blog)
                                 <article class="post">
-									<figure class="post-thumb"><img src="{{ asset('uploads/blogs/'. $blog->path) }}" alt=""><a href="news-detail.html" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
+									<figure class="post-thumb"><img src="{{ asset('uploads/blogs/'. $blog->path) }}" alt=""><a href="{{ route('blog-detail', $blog->id) }}" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
 									<div class="text"><a href="{{ route('blog-detail', $blog->id) }}">{{ $blog->title }}</a></div>
 									<div class="post-info">{{ $blog->created_at->format('d-m-Y') }}
                                         <span></span></div>
@@ -152,7 +150,7 @@
                                     <h5>Tags</h5>
                                 </div>
                                 @foreach (explode(',', $configuration->meta_keywords ?? 'Default Keyword') as $keyword)
-                                <a href="">{{ trim($keyword) }}</a>
+                                <a>{{ trim($keyword) }}</a>
                             @endforeach
                             </div>
                         </div>

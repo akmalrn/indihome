@@ -3,7 +3,9 @@
 
 <head>
     <meta charset="utf-8">
-    @if (!empty($configuration->title))
+    @if (!empty($blog->title))
+        <title>{{ $blog->title }}</title>
+    @elseif ($configuration->title)
         <title>{{ $configuration->title }}</title>
     @else
         <title>Website</title>
@@ -15,15 +17,16 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-
-    @if (!empty($configuration->meta_descriptions))
-        <meta name="description" content="{{ $configuration->meta_descriptions }}">
+    @if (!empty($blog->descriptions))
+        <meta name="description" content="{{ $blog->descriptions }}">
     @else
+        <meta name="description" content="{{ $configuration->meta_descriptions }}">
     @endif
 
-    @if (!empty($configuration->meta_keywords))
-        <meta name="keywords" content="{{ $configuration->meta_keywords }}">
+    @if (!empty($blog->keywords))
+        <meta name="keywords" content="{{ $blog->keywords }}">
     @else
+        <meta name="keywords" content="{{ $configuration->meta_keywords }}">
     @endif
 
 
@@ -37,6 +40,8 @@
     <!-- Responsive -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+
 
 </head>
 
@@ -92,7 +97,7 @@
                             @endif
                             @if (!empty($contact->tiktok))
                                 <li class="tiktok"><a href="{{ $contact->tiktok }}" target="_blank"
-                                        class="fa fa-tiktok"></a>
+                                        class="fa fa-tiktok">T</a>
                                 @else
                             @endif
                             </li>
@@ -155,7 +160,7 @@
                                             <a href="#">Tentang</a>
                                             <ul>
                                                 <li><a href="{{ route('about') }}">Tentang Kita</a></li>
-                                                <li><a href="{{ route('price') }}">Harga</a></li>
+                                                <li><a href="{{ route('price') }}">Paket Harga</a></li>
                                             </ul>
                                         </li>
 
@@ -259,7 +264,7 @@
                 <div class="close-btn"><span class="icon flaticon-multiply"></span></div>
 
                 <nav class="menu-box">
-                    <div class="nav-logo"><a href="index.html"><img src="images/logo.png" alt=""
+                    <div class="nav-logo"><a href="{{ route('index') }}"><img src="images/logo.png" alt=""
                                 title=""></a></div>
                     <div class="menu-outer">
                         <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
@@ -286,7 +291,12 @@
                         <div class="sidebar-info-contents">
                             <div class="content-inner">
                                 <div class="logo">
-                                    <a href="{{ route('index') }}"><img src="{{ asset($configuration->path) }}" alt="" /></a>
+                                    @if ($configuration && !empty($configuration->path))
+                                        <a href="{{ route('index') }}"><img src="{{ asset($configuration->path) }}"
+                                                alt="" /></a>
+                                    @else
+                                        -
+                                    @endif
                                 </div>
                                 <div class="content-box">
                                     <h5>Tentang Kami</h5>
@@ -295,7 +305,10 @@
                                             <div class="col-12">
                                                 <div class="bg-light p-4 rounded">
                                                     <p class="text-dark" style="line-height: 1.6; font-size: 16px;">
-                                                        {!! $about->description !!}
+                                                        @if ($about && !empty($about->description))
+                                                            {!! $about->description !!}
+                                                        @else
+                                                        @endif
                                                     </p>
                                                 </div>
                                             </div>
@@ -310,44 +323,54 @@
                                 <div class="contact-info">
                                     <h5>Info Kontak</h5>
                                     <ul class="list-style-one">
-                                        <li><span class="icon fa fa-location-arrow"></span>Chicago 12, Melborne City,
-                                            USA</li>
-                                        <li><span class="icon fa fa-phone"></span>{{ $contact->phone_number }}</li>
-                                        <li><span class="icon fa fa-envelope"></span>{{ $contact->email_address }}</li>
-                                        <li><span class="icon fa fa-clock-o"></span>{{ $contact->hours }}</li>
+                                        @if (!empty($contact->address))
+                                            <li><span class="icon fa fa-location-arrow"></span>{{ $contact->address }}
+                                            </li>
+                                        @endif
+                                        @if (!empty($contact->phone_number))
+                                            <li><span class="icon fa fa-phone"></span>{{ $contact->phone_number }}
+                                            </li>
+                                        @else
+                                        @endif
+                                        @if (!empty($contact->email_address))
+                                            <li><span class="icon fa fa-envelope"></span>{{ $contact->email_address }}
+                                            </li>
+                                        @else
+                                        @endif
+                                        @if (!empty($contact->hours))
+                                            <li><span class="icon fa fa-clock-o"></span>{{ $contact->hours }}</li>
+                                        @else
+                                        @endif
                                     </ul>
                                 </div>
                                 <!-- Social Box -->
                                 <ul class="social-box">
                                     @if (!empty($contact->facebook))
-                                    <li class="facebook"><a href="{{ $contact->facebook }}" class="fa fa-facebook-f"></a>
-                                    </li>
-                                @else
-
-                                @endif
-                                @if (!empty($contact->email_address))
-                                    <li class="gmail">
-                                        <a href="mailto:{{ $contact->email_address }}">
-                                            <i class="fa fa-envelope"></i> <!-- Or use a Gmail-specific icon -->
-                                        </a>
-                                    </li>
-                                @else
-
-                                @endif
-                                @if (!empty($contact->tiktok))
-                                    <li class="tiktok"><a href="{{ $contact->tiktok }}" target="_blank"
-                                            class="fa fa-tiktok"></a>
+                                        <li class="facebook"><a href="{{ $contact->facebook }}"
+                                                class="fa fa-facebook-f"></a>
+                                        </li>
                                     @else
-
-                                @endif
-                                </li>
-                                @if (!empty($contact->phone_number))
-                                    <li class="whatsapp"> <a href="https://wa.me/{{ $contact->phone_number }}"
-                                            target="_blank" class="fa fa-whatsapp"></a>
+                                    @endif
+                                    @if (!empty($contact->email_address))
+                                        <li class="gmail">
+                                            <a href="mailto:{{ $contact->email_address }}">
+                                                <i class="fa fa-envelope"></i> <!-- Or use a Gmail-specific icon -->
+                                            </a>
+                                        </li>
+                                    @else
+                                    @endif
+                                    @if (!empty($contact->tiktok))
+                                        <li class="tiktok"><a href="{{ $contact->tiktok }}" target="_blank"
+                                                class="fa fa-tiktok">T</a>
+                                        @else
+                                    @endif
                                     </li>
-                                @else
-
-                                @endif
+                                    @if (!empty($contact->phone_number))
+                                        <li class="whatsapp"> <a href="https://wa.me/{{ $contact->phone_number }}"
+                                                target="_blank" class="fa fa-whatsapp"></a>
+                                        </li>
+                                    @else
+                                    @endif
                                 </ul>
                             </div>
                         </div>
@@ -361,41 +384,44 @@
         @yield('content')
 
         <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="auto-container">
-            <div class="inner-container" style="background-image: url(images/background/pattern-11.png)">
-                <div class="row clearfix">
+        <section class="cta-section">
+            <div class="auto-container">
+                <div class="inner-container" style="background-image: url(images/background/pattern-11.png)">
+                    <div class="row clearfix">
 
-                    <!-- Title Column -->
-                    <div class="title-column col-lg-6 col-md-12 col-sm-12">
-                        <div class="inner-column">
-                            <h3>Mendaftarlah untuk buletin kami</h3>
-                            <div class="text">Ikuti terus berita dan produk terbaru kami..</div>
+                        <!-- Title Column -->
+                        <div class="title-column col-lg-6 col-md-12 col-sm-12">
+                            <div class="inner-column">
+                                <h3>Ingin daftar indihome atau konsultasi perihal Layanan Indihome? </h3>
+                                <div class="text">Hubungi kami klik tombol berikut..</div>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Form Column -->
-                    <div class="form-column col-lg-6 col-md-12 col-sm-12">
-                        <div class="inner-column">
-                            <div class="newsletter-form">
-                                <a href="https://wa.me/{{ $contact->phone_number }}" target="blank">
+                        <!-- Form Column -->
+                        <div class="form-column col-lg-6 col-md-12 col-sm-12">
+                            <div class="inner-column">
+                                <div class="newsletter-form">
+                                    @if (!empty($contact->phone_number))
+                                        <a href="https://wa.me/{{ $contact->phone_number }}" target="blank">
+                                        @else
+                                    @endif
                                     <div class="form-group">
-                                        <input type="email" name="email" value="" placeholder="Hubungi Kami ---->>>"
-                                            required="">
+                                        <input type="email" name="email" value=""
+                                            placeholder="Hubungi Kami ---->>>" required="">
                                         <button type="submit" class="theme-btn btn-style-five"><span
                                                 class="txt">WhatsApp</span></button>
 
                                     </div>
-                                </a>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- End CTA Section -->
+        </section>
+        <!-- End CTA Section -->
 
         <!-- Main Footer -->
         <footer class="main-footer">
@@ -464,13 +490,14 @@
 
                         @if (!empty($contact->tiktok))
                             <li class="tiktok">
-                                <a href="{{ $contact->tiktok }}" target="_blank" class="fa fa-tiktok"></a>
+                                <a href="{{ $contact->tiktok }}" target="_blank" class="fa fa-tiktok">T</a>
                             </li>
                         @endif
 
                         @if (!empty($contact->phone_number))
                             <li class="whatsapp">
-                                <a href="https://wa.me/{{ $contact->phone_number }}" target="_blank" class="fa fa-whatsapp"></a>
+                                <a href="https://wa.me/{{ $contact->phone_number }}" target="_blank"
+                                    class="fa fa-whatsapp"></a>
                             </li>
                         @endif
                     </ul>

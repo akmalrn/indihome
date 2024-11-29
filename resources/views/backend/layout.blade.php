@@ -161,14 +161,14 @@
                             </span>
                             <h4 class="text-section">Components</h4>
                         </li>
-                        <li class="nav-item {{ Request::is('configuration') ? 'active' : '' }}">
+                        <li class="nav-item {{ Request::is('admin-dashboard/configuration') ? 'active' : '' }}">
                             <a href="{{ route('configuration.index') }}">
                                 <i class="fas fa-cog"></i>
                                 <p>Configuration</p>
                                 <span class="badge badge-secondary"></span>
                             </a>
                         </li>
-                        <li class="nav-item {{ Request::is('admin-dashboard/slider', 'admin-dashboard/slider/create', 'slider/*/edit') ? 'active' : '' }}">
+                        <li class="nav-item {{ Request::is('admin-dashboard/slider', 'admin-dashboard/slider/create', 'admin-dashboard/slider/*/edit') ? 'active' : '' }}">
                             <a href="{{ route('slider.index') }}">
                                 <i class="fas fa-sliders-h"></i>
                                 <p>Slider</p>
@@ -176,7 +176,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item {{ Request::is('about-us') ? 'active' : '' }}">
+                        <li class="nav-item {{ Request::is('admin-dashboard/bout-us') ? 'active' : '' }}">
                             <a href="{{ route('about-us.index') }}">
                                 <i class="fas fa-info-circle"></i>
                                 <p>About Us</p>
@@ -184,7 +184,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item {{ Request::is('superiority', 'superiority/create', 'superiority/*/edit') ? 'active' : '' }}">
+                        <li class="nav-item {{ Request::is('admin-dashboard/superiority', 'admin-dashboard/superiority/create', 'admin-dashboard/superiority/*/edit') ? 'active' : '' }}">
                             <a href="{{ route('superiority.index') }}">
                                 <i class="fas fa-medal"></i>
                                 <p>Superiority</p>
@@ -192,7 +192,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item {{ Request::is('why-us') ? 'active' : '' }}">
+                        <li class="nav-item {{ Request::is('admin-dashboard/why-us') ? 'active' : '' }}">
                             <a href="{{ route('why-us.index') }}">
                                 <i class="fas fa-thumbs-up"></i>
                                 <p>Why Us</p>
@@ -200,7 +200,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item {{ Request::is('services', 'services/create', 'services/*/edit', 'categories-services/create',  'categories-services/*/edit') ? 'active' : '' }}">
+                        <li class="nav-item {{ Request::is('admin-dashboard/services', 'admin-dashboard/services/create', 'admin-dashboard/services/*/edit', 'admin-dashboard/categories-services/create',  'admin-dashboard/categories-services/*/edit') ? 'active' : '' }}">
                             <a href="{{ route('services.index') }}">
                                 <i class="fas fa-hand-holding"></i>
                                 <p>Services</p>
@@ -208,7 +208,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item {{ Request::is('pricings', 'pricings/create', 'pricings/*/edit', 'categories-pricings/create',  'categories-pricings/*/edit') ? 'active' : '' }}">
+                        <li class="nav-item {{ Request::is('admin-dashboard/pricings', 'admin-dashboard/pricings/create', 'admin-dashboard/pricings/*/edit', 'admin-dashboard/categories-pricings/create',  'admin-dashboard/categories-pricings/*/edit') ? 'active' : '' }}">
                             <a href="{{ route('pricings.index') }}">
                                 <i class="fas fa-wallet"></i>
                                 <p>Pricing</p>
@@ -216,7 +216,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item {{ Request::is('gallery', 'gallery/create', 'gallery/*/edit') ? 'active' : '' }}">
+                        <li class="nav-item {{ Request::is('admin-dashboard/gallery', 'admin-dashboard/gallery/create', 'admin-dashboard/gallery/*/edit') ? 'active' : '' }}">
                             <a href="{{ route('gallery.index') }}">
                                 <i class="fas fa-images"></i>
                                 <p>Gallery</p>
@@ -224,7 +224,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item {{ Request::is('partner', 'partner/create', 'partner/*/edit') ? 'active' : '' }}">
+                        <li class="nav-item {{ Request::is('admin-dashboard/partner', 'admin-dashboard/partner/create', 'admin-dashboard/partner/*/edit') ? 'active' : '' }}">
                             <a href="{{ route('partner.index') }}">
                                 <i class="fas fa-handshake"></i>
                                 <p>Partner</p>
@@ -232,7 +232,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item {{ Request::is('blogs', 'blogs/create', 'blogs/*/edit', 'categories-blogs/create',  'categories-blogs/*/edit') ? 'active' : '' }}">
+                        <li class="nav-item {{ Request::is('admin-dashboard/blogs', 'admin-dashboard/blogs/create', 'admin-dashboard/blogs/*/edit', 'admin-dashboard/categories-blogs/create',  'admin-dashboard/categories-blogs/*/edit') ? 'active' : '' }}">
                             <a href="{{ route('blogs.index') }}">
                                 <i class="fas fa-pen"></i>
                                 <p>Blog</p>
@@ -240,15 +240,15 @@
                             </a>
                         </li>
 
-                        <li class="nav-item {{ Request::is('admin-dashboard/videos', 'videos.create', 'videos.*.edit', 'categories-videos/create',  'categories-videos/*/edit') ? 'active' : '' }}">
+                        <li class="nav-item {{ Request::is('admin-dashboard/contact', 'admin-dashboard/contact.create', 'admin-dashboard/contact.*.edit') ? 'active' : '' }}">
                             <a href="{{ route('contacts.index') }}">
                                 <i class="fas fa-phone"></i>
-                                <p>Contct</p>
+                                <p>Contact</p>
                                 <span class="badge badge-secondary"></span>
                             </a>
                         </li>
 
-                        <li class="nav-item {{ Request::is('admin-dashboard/testimonial-clients', 'videos.create', 'videos.*.edit', 'categories-videos/create',  'categories-videos/*/edit') ? 'active' : '' }}">
+                        <li class="nav-item {{ Request::is('admin-dashboard/testimonial-clients', 'admin-dashboard/testimonial.create', 'admin-dashboard/testimonial.*.edit') ? 'active' : '' }}">
                             <a href="{{ route('testimonial-clients.index') }}">
                                 <i class="fas fa-comments"></i>
                                 <p>Testimonial Client</p>
@@ -256,7 +256,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item {{ Request::is('admin-dashboard/testimonial-clients', 'videos.create', 'videos.*.edit', 'categories-videos/create',  'categories-videos/*/edit') ? 'active' : '' }}">
+                        <li class="nav-item {{ Request::is('admin-dashboard/our-team', 'admin-dashboard/our-team.create', 'admin-dashboard/our-team.*.edit') ? 'active' : '' }}">
                             <a href="{{ route('our-team.index') }}">
                                 <i class="fas fa-user-friends"></i>
                                 <p>Our Team</p>

@@ -34,8 +34,10 @@ class WhyUsController extends Controller
         $data = [
             'title' => $request->input('title'),
             'description' => $request->input('description'),
+            'overview' => $request->input('overview'), // Tambahkan overview
             'path' => $imageName,
         ];
+
 
         WhyUs::updateOrCreate(
             ['id' => 1],

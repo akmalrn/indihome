@@ -17,6 +17,7 @@ use App\Models\admin\Slider;
 use App\Models\admin\Superiority;
 use App\Models\admin\TestimonialClient;
 use App\Models\admin\Price;
+use App\Models\admin\TypeService;
 use App\Models\admin\Video;
 use App\Models\admin\WhyUs;
 use Illuminate\Http\Request;
@@ -27,17 +28,16 @@ class FrontendController extends Controller
     {
         $contact = Contact::first();
         $about = AboutUs::first();
-        $categoryservices = CategoryService::all();
+        $categoryservices = CategoryService::take(3)->get();
         $sliders = Slider::all();
-        $services = Service::all();
+        $services = Service::take(3)->get();
         $partners = Partner::all();
         $whyus = WhyUs::first();
         $pricings = Pricing::all();
         $superioritys = Superiority::all();
-        $videos = Video::take(8)->get();
         $configuration = Configuration::first();
         $testimonialClients = TestimonialClient::take(5)->get();
-        return view('frontend.index', compact('categoryservices', 'sliders', 'services', 'partners', 'whyus', 'pricings', 'superioritys', 'videos', 'configuration', 'testimonialClients', 'contact', 'about'));
+        return view('frontend.index', compact('categoryservices', 'sliders', 'services', 'partners', 'whyus', 'pricings', 'superioritys', 'configuration', 'testimonialClients', 'contact', 'about'));
     }
 
     public function about()
@@ -81,13 +81,22 @@ class FrontendController extends Controller
         $about = AboutUs::first();
         $configuration = Configuration::first();
         $categoryservices = CategoryService::all();
-        $services = Service::where('category_id', $category_id)->get();
+        $types = TypeService::all();
+            $services = Service::with('type')
+            ->where('category_id', $category_id)
+            ->get();
+
 
         if ($services->isEmpty()) {
             abort(404, 'Layanan tidak ditemukan untuk kategori ini');
         }
+        if ($categoryservices->isEmpty()) {
+            abort(404, 'Kategori layanan tidak ditemukan');
+        }
 
-        return view('frontend.services-detail', compact('configuration', 'categoryservices', 'services', 'contact', 'about'));
+        $groupedServices = $services->groupBy('type_id');
+
+        return view('frontend.services-detail', compact('groupedServices', 'types', 'configuration', 'categoryservices', 'services', 'contact', 'about'));
     }
 
     public function blog()
@@ -122,10 +131,11 @@ class FrontendController extends Controller
         $services = Service::all();
         $configuration = Configuration::first();
         $blog = Blog::findOrFail($id);
+        $categoryBlogs = CategoryBlog::all();
         $categoryservices = CategoryService::all();
         $previousBlog = Blog::where('id', '<', $id)->orderBy('id', 'desc')->first();
         $nextBlog = Blog::where('id', '>', $id)->orderBy('id', 'asc')->first();
-        return view('frontend.blog-detail', compact('blogs', 'blog', 'configuration', 'services', 'categoryservices', 'previousBlog', 'nextBlog', 'contact', 'about'));
+        return view('frontend.blog-detail', compact('blogs', 'categoryBlogs', 'blog', 'configuration', 'services', 'categoryservices', 'previousBlog', 'nextBlog', 'contact', 'about'));
     }
 
     public function notFound()
