@@ -11,5 +11,5 @@ class Visit extends Model
 
     protected $table = 'visits';
 
-    protected $fillable = ['ip_address', 'visited_at'];
+    protected $fillable = ['ip_address', 'visited_at', 'country'];
 }
