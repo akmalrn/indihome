@@ -1,4 +1,4 @@
-<h1>Website Company Profile ( COMPRO )</h1>
+<h1>Indibizz</h1>
 Di projek ini Saya Membuat Indibizz, tujuannya yaitu menampilkan informasi tentang perusahaan, seperti profil, layanan, blog,  dan kontak
 Dibawah ini adalah tampilan beranda dari Indioizz yang pernah saya buat.
 
