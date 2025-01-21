@@ -1,5 +1,5 @@
 <h1>Indibizz</h1>
-Di projek ini Saya Membuat Indibizz, tujuannya yaitu menampilkan informasi tentang perusahaan, seperti profil, layanan, blog,  dan kontak
+Di projek ini Saya Membuat Indibizz, tujuannya yaitu menampilkan informasi tentang Indibizz, seperti profil, layanan, blog,  dan kontak
 Dibawah ini adalah tampilan beranda dari Indioizz yang pernah saya buat.
 
  ![beranda](https://github.com/user-attachments/assets/a6d3ae13-4059-48c2-8a7a-2f47a742b537)
