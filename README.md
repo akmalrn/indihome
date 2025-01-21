@@ -22,13 +22,13 @@ Halaman ini bertujuan untuk memberikan informasi layanan yang ditawarkan atau di
 Selanjutnya halaman blog
  ![blog](https://github.com/user-attachments/assets/563e20c8-3ea1-4f72-9f73-8ce4d7a6b93e)
 
-Halaman blog ini berisi tentang artikel atau berita yang relevan untuk memberikan informasi tentang topik yang berkaitan dengan layanan yang disediakan oleh Indibizz tersebut, selain itu fungsi utama dari blog ini untuk meningkatkan Visibilitas SEO (Search Engine Optimization). Membantu website muncul di halaman google atau mesin pencarian lainnya melalui kata kunci (keyword) yang digunakan dalam artikel.
+Halaman blog ini berisi tentang artikel atau berita yang relevan untuk memberikan informasi tentang topik yang berkaitan dengan layanan yang disediakan oleh Indibizz tersebut, selain itu fungsi utama dari blog ini untuk meningkatkan Visibilitas SEO (Search Engine Optimization). Membantu Indibizz muncul di halaman google atau mesin pencarian lainnya melalui kata kunci (keyword) yang digunakan dalam artikel.
 
 
 Selanjutkan halaman kontak
  ![kontak kami](https://github.com/user-attachments/assets/8e16e65d-17c4-467f-bbfa-2ccb1289429d)
 
-Halaman ini menyediakan informasi kontak perusahaan, seperti alamat, nomor telepon, dan email untuk memudahkan pengunjung untuk menghubungi Indibizz terkait layanan yang disediakan.
+Halaman ini menyediakan informasi kontak Indibizz, seperti alamat, nomor telepon, dan email untuk memudahkan pengunjung untuk menghubungi Indibizz terkait layanan yang disediakan.
 
 Sekian Dokumentasi dari Indibizz yang pernah saya buat .... Terimakasih | website->https://indihomehargapromo.com/ | portolio-> https://portofolio-akmalrahmattullahnugraha.netlify.app
 
