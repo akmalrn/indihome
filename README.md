@@ -1,6 +1,7 @@
 <h1>Website Company Profile ( COMPRO )</h1>
 Di projek ini Saya Membuat Indibizz, tujuannya yaitu menampilkan informasi tentang perusahaan, seperti profil, layanan, blog,  dan kontak
 Dibawah ini adalah tampilan beranda dari Indioizz yang pernah saya buat.
+
  ![beranda](https://github.com/user-attachments/assets/a6d3ae13-4059-48c2-8a7a-2f47a742b537)
 
 Halaman ini adalah halaman utama bagi pengunjung website. Halaman ini juga dirancang untuk memberikan gambaran umum tentang perusahaan, menarik pengunjung, dan mengarahkan mereka ke informasi atau layanan lain yang tersedia di website tersebut.
